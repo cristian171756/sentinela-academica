@@ -4,7 +4,7 @@
 // ==========================================
 
 protegerPagina("coordenacao");
-App.initSidebar("dashboard");
+App.initSidebar("dashboard", "coordenacao");
 
 const alunos = getAlunos();
 const dadosDashboard = carregarDados();
@@ -104,23 +104,27 @@ new Chart(document.getElementById("grafico"), {
             {
                 label: "IPA Médio",
                 data: serieGeral.ipa,
-                borderColor: "#2563EB",
-                backgroundColor: "rgba(37,99,235,.12)",
+                borderColor: "#090E3F",
+                backgroundColor: "rgba(37,99,235,.10)",
                 fill: true,
-                tension: .4,
-                pointRadius: 4,
-                pointBackgroundColor: "#2563EB",
+                tension: .35,
+                borderWidth: 2.5,
+                pointRadius: 3,
+                pointHoverRadius: 5,
+                pointBackgroundColor: "#090E3F",
                 spanGaps: false
             },
             {
                 label: "Média Geral",
                 data: serieGeral.media,
-                borderColor: "#14B8A6",
-                backgroundColor: "rgba(20,184,210,.10)",
+                borderColor: "#F5C400",
+                backgroundColor: "rgba(245,196,0,.14)",
                 fill: true,
-                tension: .4,
-                pointRadius: 4,
-                pointBackgroundColor: "#14B8A6",
+                tension: .35,
+                borderWidth: 2.5,
+                pointRadius: 3,
+                pointHoverRadius: 5,
+                pointBackgroundColor: "#D4A900",
                 spanGaps: false
             }
         ]
@@ -128,10 +132,17 @@ new Chart(document.getElementById("grafico"), {
     options: {
         responsive: true,
         maintainAspectRatio: false,
-        plugins: { legend: { position: "bottom" } },
+        interaction: { mode: "index", intersect: false },
+        plugins: {
+            legend: {
+                position: "bottom",
+                labels: { usePointStyle: true, pointStyle: "circle", boxWidth: 8, boxHeight: 8, padding: 14, color: "#475569", font: { size: 12, weight: "600" } }
+            },
+            tooltip: { backgroundColor: "#0F172A", padding: 10, cornerRadius: 10 }
+        },
         scales: {
-            y: { beginAtZero: true, min: 0, max: 100, grid: { color: "#E2E8F0" } },
-            x: { grid: { display: false } }
+            y: { beginAtZero: true, min: 0, max: 100, grid: { color: "rgba(148,163,184,.18)", drawBorder: false }, ticks: { color: "#475569", font: { size: 11 }, maxTicksLimit: 6 }, border: { display: false } },
+            x: { grid: { display: false, drawBorder: false }, ticks: { color: "#475569", font: { size: 11 } }, border: { display: false } }
         }
     }
 });
@@ -178,7 +189,7 @@ function getDadosGrafico(tipo) {
             return {
                 labels: nomesTurmas,
                 data: nomesTurmas.map(t => turmas[t].n),
-                cor: "#2563EB"
+                cor: "#090E3F"
             };
 
         case "frequencia": {
@@ -193,7 +204,7 @@ function getDadosGrafico(tipo) {
                 else if (f < 90) contagem[3]++;
                 else contagem[4]++;
             });
-            return { labels: faixas, data: contagem, cor: "#14B8A6" };
+            return { labels: faixas, data: contagem, cor: "#0F766E" };
         }
 
         case "notasBaixas": {
@@ -215,7 +226,7 @@ function getDadosGrafico(tipo) {
         case "matriculados": {
             const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun"];
             const acumulado = meses.map((_, i) => alunos.slice(0, Math.max(1, Math.round(alunos.length * (i + 1) / 6))).length);
-            return { labels: meses, data: acumulado, cor: "#7C3AED" };
+            return { labels: meses, data: acumulado, cor: "#F5C400" };
         }
 
         case "pendencias":
@@ -241,7 +252,7 @@ function getDadosGrafico(tipo) {
             return {
                 labels: nomes,
                 data: nomes.map(d => (disciplinas[d].s / disciplinas[d].n).toFixed(1)),
-                cor: "#2563EB"
+                cor: "#090E3F"
             };
         }
 
@@ -250,12 +261,12 @@ function getDadosGrafico(tipo) {
                 labels: serieGeral.labels,
                 data: serieGeral.ipa,
                 data2: serieGeral.media,
-                cor: "#2563EB",
+                cor: "#090E3F",
                 cor2: "#14B8A6"
             };
 
         default:
-            return { labels: [], data: [], cor: "#2563EB" };
+            return { labels: [], data: [], cor: "#090E3F" };
     }
 }
 
@@ -263,10 +274,11 @@ function criarGrafico(canvasId, tipo) {
     const dados = getDadosGrafico(tipo);
     const info = TIPOS_GRAFICO[tipo];
     const ctx = document.getElementById(canvasId);
+    const corTexto = "#475569";
+    const corGrade = "rgba(148,163,184,.18)";
 
     const isLine = info.tipo === "line";
     const isDoughnut = info.tipo === "doughnut";
-
     const datasets = [];
 
     if (tipo === "evolucaoIPA") {
@@ -274,32 +286,39 @@ function criarGrafico(canvasId, tipo) {
             label: "IPA Médio",
             data: dados.data,
             borderColor: dados.cor,
-            backgroundColor: dados.cor + "20",
+            backgroundColor: "rgba(9,14,63,.08)",
             fill: true,
-            tension: .4,
-            pointRadius: 4,
+            tension: .35,
+            borderWidth: 2.5,
+            pointRadius: 3,
+            pointHoverRadius: 5,
             pointBackgroundColor: dados.cor,
             spanGaps: false
         });
         datasets.push({
             label: "Média Geral",
             data: dados.data2,
-            borderColor: dados.cor2,
-            backgroundColor: dados.cor2 + "20",
+            borderColor: "#F5C400",
+            backgroundColor: "rgba(245,196,0,.14)",
             fill: true,
-            tension: .4,
-            pointRadius: 4,
-            pointBackgroundColor: dados.cor2,
+            tension: .35,
+            borderWidth: 2.5,
+            pointRadius: 3,
+            pointHoverRadius: 5,
+            pointBackgroundColor: "#D4A900",
             spanGaps: false
         });
     } else {
         datasets.push({
             label: info.titulo,
             data: dados.data,
-            backgroundColor: isDoughnut ? dados.cores : dados.cor + "CC",
+            backgroundColor: isDoughnut ? dados.cores : dados.cor + "D9",
             borderColor: isDoughnut ? "#fff" : dados.cor,
-            borderWidth: isDoughnut ? 2 : 1,
-            borderRadius: isDoughnut ? 0 : 8
+            borderWidth: isDoughnut ? 3 : 0,
+            borderRadius: isDoughnut ? 0 : 10,
+            borderSkipped: false,
+            hoverBackgroundColor: isDoughnut ? dados.cores : dados.cor,
+            maxBarThickness: 42
         });
     }
 
@@ -309,12 +328,51 @@ function criarGrafico(canvasId, tipo) {
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            animation: { duration: 450 },
+            layout: { padding: { top: 4, right: 8, bottom: 0, left: 0 } },
             plugins: {
-                legend: { position: "bottom", display: isDoughnut || tipo === "evolucaoIPA" }
+                legend: {
+                    display: isDoughnut || tipo === "evolucaoIPA",
+                    position: "bottom",
+                    labels: {
+                        usePointStyle: true,
+                        pointStyle: "circle",
+                        boxWidth: 8,
+                        boxHeight: 8,
+                        padding: 14,
+                        color: corTexto,
+                        font: { size: 12, weight: "600" }
+                    }
+                },
+                tooltip: {
+                    backgroundColor: "#0F172A",
+                    padding: 10,
+                    cornerRadius: 10,
+                    titleFont: { size: 12, weight: "700" },
+                    bodyFont: { size: 12 }
+                }
             },
             scales: isDoughnut ? {} : {
-                y: { beginAtZero: true, grid: { color: "#E2E8F0" } },
-                x: { grid: { display: false } }
+                y: {
+                    beginAtZero: true,
+                    grid: { color: corGrade, drawBorder: false },
+                    ticks: { color: corTexto, font: { size: 11 }, maxTicksLimit: 5 },
+                    border: { display: false }
+                },
+                x: {
+                    grid: { display: false, drawBorder: false },
+                    ticks: {
+                        color: corTexto,
+                        font: { size: 11 },
+                        maxRotation: 0,
+                        autoSkip: true,
+                        callback(value) {
+                            const label = this.getLabelForValue(value);
+                            return label && label.length > 12 ? label.slice(0, 12) + "…" : label;
+                        }
+                    },
+                    border: { display: false }
+                }
             }
         }
     });
@@ -323,6 +381,7 @@ function criarGrafico(canvasId, tipo) {
 function atualizarGraficos() {
     const tipoPrincipal = document.getElementById("graficoPrincipal").value;
     const tipoComparacao = document.getElementById("graficoComparacao").value;
+    const grid = document.getElementById("chartCompareGrid");
 
     document.getElementById("tituloPrincipal").textContent = TIPOS_GRAFICO[tipoPrincipal].titulo;
 
@@ -330,12 +389,15 @@ function atualizarGraficos() {
     chartPrincipal = criarGrafico("canvasPrincipal", tipoPrincipal);
 
     const boxComparacao = document.getElementById("boxComparacao");
-    if (tipoComparacao && tipoComparacao !== tipoPrincipal) {
+    const comparando = tipoComparacao && tipoComparacao !== tipoPrincipal;
+    if (comparando) {
+        grid.classList.remove("single");
         boxComparacao.style.display = "";
         document.getElementById("tituloComparacao").textContent = TIPOS_GRAFICO[tipoComparacao].titulo;
         if (chartComparacao) chartComparacao.destroy();
         chartComparacao = criarGrafico("canvasComparacao", tipoComparacao);
     } else {
+        grid.classList.add("single");
         boxComparacao.style.display = "none";
         if (chartComparacao) { chartComparacao.destroy(); chartComparacao = null; }
     }

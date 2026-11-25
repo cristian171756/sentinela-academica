@@ -4,7 +4,7 @@
 // =========================================
 
 protegerPagina("coordenacao");
-App.initSidebar("alunos");
+App.initSidebar("alunos", "coordenacao");
 
 const tabela = document.getElementById("tabelaAlunos");
 const pesquisa = document.getElementById("pesquisa");

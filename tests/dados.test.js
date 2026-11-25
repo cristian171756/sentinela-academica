@@ -44,7 +44,7 @@ function joao() {
 
 test("migração preserva originais, cria backup e converte notas demonstrativas", () => {
     const dados = D.carregarDados();
-    assert.equal(dados.schemaVersao, 6);
+    assert.equal(dados.schemaVersao, 7);
     assert.ok(globalThis.localStorage.getItem("sentinela_dados_v4_backup"));
 
     const j = joao();
@@ -255,7 +255,7 @@ test("dados permanecem salvos após nova leitura", () => {
     assert.ok(j.historicoIPACalculado.length >= 3);
     assert.equal(j.registrosFrequencia.length, 4);
     assert.equal(j.indicadoresIPA.F, 50);
-    assert.equal(D.carregarDados().schemaVersao, 6);
+    assert.equal(D.carregarDados().schemaVersao, 7);
 });
 
 test("nota e registro de frequência podem ser excluídos com autorização", () => {

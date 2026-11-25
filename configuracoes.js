@@ -3,8 +3,8 @@
 // Configurações
 // ==========================================
 
-const sessaoConfig = getSessao();
-if (!sessaoConfig) { window.location.href = "index.html"; throw new Error("sem sessão"); }
+const sessaoConfig = protegerPagina(["coordenacao", "professor", "aluno"]);
+if (!sessaoConfig) throw new Error("sem sessão");
 App.initSidebar("configuracoes", sessaoConfig.tipo);
 
 // ======== TEMA ========
@@ -26,9 +26,11 @@ const refFoto = sessaoConfig.referencia;
 function atualizarPreviewFoto() {
     const foto = Pref.getFoto(tipoFoto, refFoto);
     if (foto) {
-        fotoPreview.innerHTML = `<img src="${foto}" alt="Foto de perfil" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
+        fotoPreview.innerHTML = `<img src="${foto}" alt="Foto de perfil">`;
+        fotoPreview.classList.add("has-foto");
     } else {
         fotoPreview.innerHTML = `<i class="fa-solid fa-user"></i>`;
+        fotoPreview.classList.remove("has-foto");
     }
 }
 
@@ -47,8 +49,14 @@ inputFoto.addEventListener("change", (e) => {
             canvas.width = size;
             canvas.height = size;
             const ctx = canvas.getContext("2d");
-            ctx.drawImage(img, 0, 0, size, size);
-            const base64 = canvas.toDataURL("image/jpeg", 0.8);
+
+            // Recorte central quadrado para não distorcer a imagem
+            const origem = Math.min(img.width, img.height);
+            const sx = (img.width - origem) / 2;
+            const sy = (img.height - origem) / 2;
+            ctx.drawImage(img, sx, sy, origem, origem, 0, 0, size, size);
+
+            const base64 = canvas.toDataURL("image/jpeg", 0.85);
             Pref.setFoto(tipoFoto, refFoto, base64);
             atualizarPreviewFoto();
             Pref.notificar("Foto atualizada", "Sua foto de perfil foi alterada com sucesso.", "notificacao");

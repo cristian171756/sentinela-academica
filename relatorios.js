@@ -4,7 +4,7 @@
 // ==========================================
 
 protegerPagina("coordenacao");
-App.initSidebar("relatorios");
+App.initSidebar("relatorios", "coordenacao");
 
 const alunos = getAlunos();
 const dadosRelatorios = carregarDados();
@@ -81,7 +81,7 @@ new Chart(document.getElementById("graficoTurmas"), {
         datasets: [{
             label: "IPA Médio",
             data: ipaTurmas,
-            backgroundColor: "#2563EB",
+            backgroundColor: "rgba(9,14,63,.82)",
             borderRadius: 8
         }]
     },
@@ -115,7 +115,7 @@ new Chart(document.getElementById("graficoDisciplinas"), {
         datasets: [{
             label: "Média",
             data: mediasDisc,
-            backgroundColor: mediasDisc.map(v => v >= 7 ? "#14B8A6" : v >= 5 ? "#F59E0B" : "#EF4444"),
+            backgroundColor: mediasDisc.map(v => v >= 7 ? "#090E3F" : v >= 5 ? "#F5C400" : "#EF4444"),
             borderRadius: 8
         }]
     },

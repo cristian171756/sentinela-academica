@@ -106,14 +106,24 @@
                 </div>
             </div>
 
-            <div class="chart-compare-grid" id="chartCompareGrid">
+            <div class="chart-compare-grid single" id="chartCompareGrid">
                 <div class="chart-box">
-                    <h3 id="tituloPrincipal">Alunos por Turma</h3>
-                    <canvas id="canvasPrincipal"></canvas>
+                    <div class="chart-box-header">
+                        <h3 id="tituloPrincipal">Alunos por Turma</h3>
+                        <span class="chart-box-tag">Principal</span>
+                    </div>
+                    <div class="chart-canvas-wrap">
+                        <canvas id="canvasPrincipal"></canvas>
+                    </div>
                 </div>
                 <div class="chart-box" id="boxComparacao" style="display:none;">
-                    <h3 id="tituloComparacao">Comparação</h3>
-                    <canvas id="canvasComparacao"></canvas>
+                    <div class="chart-box-header">
+                        <h3 id="tituloComparacao">Comparação</h3>
+                        <span class="chart-box-tag">Comparação</span>
+                    </div>
+                    <div class="chart-canvas-wrap">
+                        <canvas id="canvasComparacao"></canvas>
+                    </div>
                 </div>
             </div>
         </section>

@@ -4,7 +4,7 @@
 // ==========================================
 
 protegerPagina("coordenacao");
-App.initSidebar("turmas");
+App.initSidebar("turmas", "coordenacao");
 
 const alunos = getAlunos();
 const dadosTurmas = carregarDados();

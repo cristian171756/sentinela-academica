@@ -117,10 +117,10 @@ if (sessao) {
                     {
                         label: "IPA",
                         data: serie.ipa,
-                        borderColor: "#2563EB",
-                        backgroundColor: "rgba(37,99,235,.12)",
+                        borderColor: "#090E3F",
+                        backgroundColor: "rgba(9,14,63,.08)",
                         fill: true, tension: .4,
-                        pointRadius: 4, pointBackgroundColor: "#2563EB",
+                        pointRadius: 4, pointBackgroundColor: "#F5C400",
                         spanGaps: false
                     },
                     {

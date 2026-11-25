@@ -6,7 +6,7 @@
 const STORAGE_KEY = "sentinela_dados_v4";
 const BACKUP_KEY = "sentinela_dados_v4_backup";
 const SESSION_KEY = "sentinela_sessao_v1";
-const SCHEMA_VERSAO = 6;
+const SCHEMA_VERSAO = 7;
 
 const COORDENADOR = {
     email: "coordenador@abel.edu.br",
@@ -2509,6 +2509,86 @@ const DADOS_BASE = {
             historicoMedia: [6.0, 5.5, 5.0, 4.8, 4.6, 4.5],
             historicoFrequencia: [72, 67, 63, 60, 58, 57],
             observacoes: "Situação gravíssima. Reprovação quase certa. Frequência e notas criticamente baixas. Encaminhamento urgente para Conselho de Classe e assistência social."
+        },
+        {
+            id: 67,
+            matricula: "2024067",
+            email: "cristiandavi@abel.edu.br",
+            senha: "1234",
+            nome: "Cristian Davi",
+            turma: "Informática II",
+            serie: "3º Ano",
+            curso: "Informática",
+            media: 9.1,
+            frequencia: 96,
+            ipa: 8,
+            notas: {
+                "Arte": [8.5, 9.0, 9.0, 9.5],
+                "Biologia": [8.0, 8.5, 9.0, 9.0],
+                "Educação Física": [9.0, 9.0, 9.5, 10.0],
+                "Filosofia": [8.0, 8.5, 9.0, 9.0],
+                "Física": [8.5, 9.0, 9.0, 9.5],
+                "Geografia": [8.0, 9.0, 9.0, 9.5],
+                "História": [8.5, 8.5, 9.0, 9.0],
+                "Língua Espanhola": [8.0, 8.5, 9.0, 9.5],
+                "Língua Inglesa": [9.0, 9.0, 9.5, 10.0],
+                "Língua Portuguesa": [8.5, 9.0, 9.0, 9.5],
+                "Matemática": [9.0, 9.0, 9.5, 10.0],
+                "Metodologia do Trabalho Científico": [8.5, 9.0, 9.0, 9.5],
+                "Projeto de Vida": [9.0, 9.5, 9.5, 10.0],
+                "Química": [8.0, 8.5, 9.0, 9.0],
+                "Sociologia do Trabalho": [8.5, 9.0, 9.0, 9.5],
+                "Banco de Dados": [9.0, 9.0, 9.5, 10.0],
+                "Empreendedorismo": [8.5, 9.0, 9.0, 9.5],
+                "Fundamentos de Redes de Computadores": [8.0, 8.5, 9.0, 9.5],
+                "Programação Estruturada e Orientada a Objetos": [9.0, 9.5, 9.5, 10.0],
+                "Programação WEB 1": [9.0, 9.0, 9.5, 10.0],
+                "Programação WEB 2": [8.5, 9.0, 9.5, 10.0]
+            },
+            historicoIPA: [10, 9, 9, 8, 8, 8],
+            historicoMedia: [8.6, 8.8, 8.9, 9.0, 9.0, 9.1],
+            historicoFrequencia: [94, 95, 95, 96, 96, 96],
+            observacoes: "Excelente desempenho acadêmico, ótima frequência e participação ativa nas atividades. Baixa necessidade de acompanhamento."
+        },
+        {
+            id: 68,
+            matricula: "2024068",
+            email: "joycelorena@abel.edu.br",
+            senha: "1234",
+            nome: "Joyce Lorena",
+            turma: "Informática I",
+            serie: "2º Ano",
+            curso: "Informática",
+            media: 8.9,
+            frequencia: 95,
+            ipa: 10,
+            notas: {
+                "Arte": [8.0, 8.5, 9.0, 9.0],
+                "Biologia": [8.5, 9.0, 9.0, 9.5],
+                "Educação Física": [9.0, 9.0, 9.5, 10.0],
+                "Filosofia": [8.0, 8.5, 9.0, 9.0],
+                "Física": [8.0, 8.5, 9.0, 9.5],
+                "Geografia": [8.5, 9.0, 9.0, 9.5],
+                "História": [8.0, 8.5, 9.0, 9.0],
+                "Língua Espanhola": [8.5, 9.0, 9.0, 9.5],
+                "Língua Inglesa": [9.0, 9.0, 9.5, 10.0],
+                "Língua Portuguesa": [8.5, 9.0, 9.0, 9.5],
+                "Matemática": [8.0, 8.5, 9.0, 9.5],
+                "Metodologia do Trabalho Científico": [8.5, 9.0, 9.0, 9.5],
+                "Projeto de Vida": [9.0, 9.0, 9.5, 10.0],
+                "Química": [8.0, 8.5, 9.0, 9.0],
+                "Sociologia do Trabalho": [8.5, 9.0, 9.0, 9.5],
+                "Introdução à Informática": [8.5, 9.0, 9.0, 9.5],
+                "Introdução à Programação": [9.0, 9.0, 9.5, 10.0],
+                "Lógica de Programação e Algoritmo": [9.0, 9.5, 9.5, 10.0],
+                "Navegação, Pesquisa e Internet": [8.5, 9.0, 9.0, 9.5],
+                "Sistemas Operacionais": [8.0, 8.5, 9.0, 9.5],
+                "Técnicas de Digitação": [9.0, 9.0, 9.5, 10.0]
+            },
+            historicoIPA: [12, 11, 11, 10, 10, 10],
+            historicoMedia: [8.4, 8.6, 8.7, 8.8, 8.9, 8.9],
+            historicoFrequencia: [93, 94, 94, 95, 95, 95],
+            observacoes: "Ótimo desempenho acadêmico, boa presença e entregas em dia. Baixa necessidade de acompanhamento."
         }
     ]
 };
@@ -2573,6 +2653,250 @@ function migrarV6(dados) {
     dados.schemaVersao = 6;
 }
 
+function seedAlunosObrigatorios(dados) {
+    if (!Array.isArray(dados.alunos)) dados.alunos = [];
+    const obrigatorios = [
+        {
+            matricula: "2024067",
+            email: "cristiandavi@abel.edu.br",
+            senha: "1234",
+            nome: "Cristian Davi",
+            turma: "Informática II",
+            serie: "3º Ano",
+            curso: "Informática",
+            observacoes: "Excelente desempenho acadêmico, ótima frequência e participação ativa nas atividades. Baixa necessidade de acompanhamento.",
+            notas: {
+                "Arte": [8.5, 9.0, 9.0, 9.5],
+                "Biologia": [8.0, 8.5, 9.0, 9.0],
+                "Educação Física": [9.0, 9.0, 9.5, 10.0],
+                "Filosofia": [8.0, 8.5, 9.0, 9.0],
+                "Física": [8.5, 9.0, 9.0, 9.5],
+                "Geografia": [8.0, 9.0, 9.0, 9.5],
+                "História": [8.5, 8.5, 9.0, 9.0],
+                "Língua Espanhola": [8.0, 8.5, 9.0, 9.5],
+                "Língua Inglesa": [9.0, 9.0, 9.5, 10.0],
+                "Língua Portuguesa": [8.5, 9.0, 9.0, 9.5],
+                "Matemática": [9.0, 9.0, 9.5, 10.0],
+                "Metodologia do Trabalho Científico": [8.5, 9.0, 9.0, 9.5],
+                "Projeto de Vida": [9.0, 9.5, 9.5, 10.0],
+                "Química": [8.0, 8.5, 9.0, 9.0],
+                "Sociologia do Trabalho": [8.5, 9.0, 9.0, 9.5],
+                "Banco de Dados": [9.0, 9.0, 9.5, 10.0],
+                "Empreendedorismo": [8.5, 9.0, 9.0, 9.5],
+                "Fundamentos de Redes de Computadores": [8.0, 8.5, 9.0, 9.5],
+                "Programação Estruturada e Orientada a Objetos": [9.0, 9.5, 9.5, 10.0],
+                "Programação WEB 1": [9.0, 9.0, 9.5, 10.0],
+                "Programação WEB 2": [8.5, 9.0, 9.5, 10.0]
+            }
+        },
+        {
+            matricula: "2024068",
+            email: "joycelorena@abel.edu.br",
+            senha: "1234",
+            nome: "Joyce Lorena",
+            turma: "Informática I",
+            serie: "2º Ano",
+            curso: "Informática",
+            observacoes: "Ótimo desempenho acadêmico, boa presença e entregas em dia. Baixa necessidade de acompanhamento.",
+            notas: {
+                "Arte": [8.0, 8.5, 9.0, 9.0],
+                "Biologia": [8.5, 9.0, 9.0, 9.5],
+                "Educação Física": [9.0, 9.0, 9.5, 10.0],
+                "Filosofia": [8.0, 8.5, 9.0, 9.0],
+                "Física": [8.0, 8.5, 9.0, 9.5],
+                "Geografia": [8.5, 9.0, 9.0, 9.5],
+                "História": [8.0, 8.5, 9.0, 9.0],
+                "Língua Espanhola": [8.5, 9.0, 9.0, 9.5],
+                "Língua Inglesa": [9.0, 9.0, 9.5, 10.0],
+                "Língua Portuguesa": [8.5, 9.0, 9.0, 9.5],
+                "Matemática": [8.0, 8.5, 9.0, 9.5],
+                "Metodologia do Trabalho Científico": [8.5, 9.0, 9.0, 9.5],
+                "Projeto de Vida": [9.0, 9.0, 9.5, 10.0],
+                "Química": [8.0, 8.5, 9.0, 9.0],
+                "Sociologia do Trabalho": [8.5, 9.0, 9.0, 9.5],
+                "Introdução à Informática": [8.5, 9.0, 9.0, 9.5],
+                "Introdução à Programação": [9.0, 9.0, 9.5, 10.0],
+                "Lógica de Programação e Algoritmo": [9.0, 9.5, 9.5, 10.0],
+                "Navegação, Pesquisa e Internet": [8.5, 9.0, 9.0, 9.5],
+                "Sistemas Operacionais": [8.0, 8.5, 9.0, 9.5],
+                "Técnicas de Digitação": [9.0, 9.0, 9.5, 10.0]
+            }
+        }
+    ];
+
+    obrigatorios.forEach(baseAluno => {
+        let aluno = dados.alunos.find(a => String(a.email || "").toLowerCase() === baseAluno.email.toLowerCase() || String(a.matricula) === baseAluno.matricula);
+        if (!aluno) {
+            const maxId = dados.alunos.reduce((m, a) => Math.max(m, Number(a.id) || 0), 0);
+            aluno = {
+                id: maxId + 1,
+                matricula: baseAluno.matricula,
+                email: baseAluno.email,
+                senha: baseAluno.senha,
+                nome: baseAluno.nome,
+                turma: baseAluno.turma,
+                serie: baseAluno.serie,
+                curso: baseAluno.curso,
+                media: null,
+                frequencia: null,
+                ipa: null,
+                ipaCompleto: false,
+                ipaClassificacao: "IPA pendente de dados",
+                dadosFaltantes: [],
+                notas: structuredClone(baseAluno.notas),
+                registrosNotas: [],
+                registrosFrequencia: [],
+                historicoIPACalculado: [],
+                historicoIPA: [],
+                historicoMedia: [],
+                historicoFrequencia: [],
+                observacoes: baseAluno.observacoes
+            };
+            dados.alunos.push(aluno);
+        } else {
+            aluno.email = aluno.email || baseAluno.email;
+            aluno.senha = aluno.senha || baseAluno.senha;
+            aluno.turma = aluno.turma || baseAluno.turma;
+            aluno.serie = aluno.serie || baseAluno.serie;
+            aluno.curso = aluno.curso || baseAluno.curso;
+            aluno.observacoes = aluno.observacoes || baseAluno.observacoes;
+            if (!aluno.notas || typeof aluno.notas !== "object") aluno.notas = structuredClone(baseAluno.notas);
+        }
+    });
+}
+
+function seedDadosSimulacao(dados) {
+    if (!dados || typeof dados !== "object") return dados;
+    // Seed de simulação para o app no navegador; testes Node mantêm comportamento determinístico.
+    if (typeof window === "undefined") return dados;
+    if (!Array.isArray(dados.alunos)) dados.alunos = [];
+    if (!Array.isArray(dados.atividades)) dados.atividades = [];
+    if (!Array.isArray(dados.entregas)) dados.entregas = [];
+    if (!Array.isArray(dados.professores)) dados.professores = [];
+
+    seedAlunosObrigatorios(dados);
+
+    const agoraIso = new Date().toISOString();
+    const datasFrequencia = [
+        "2026-03-02", "2026-03-09", "2026-03-16", "2026-03-23",
+        "2026-04-06", "2026-04-13", "2026-04-20", "2026-04-27"
+    ];
+    const datasAtividades = ["2026-03-20", "2026-04-03", "2026-04-17", "2026-05-01"];
+
+    function hashSeed(str) {
+        let h = 2166136261;
+        for (let i = 0; i < str.length; i++) {
+            h ^= str.charCodeAt(i);
+            h = Math.imul(h, 16777619);
+        }
+        return h >>> 0;
+    }
+    function pickProfessor(disciplina, turma) {
+        const prof = (dados.professores || []).find(p =>
+            Array.isArray(p.disciplinas) && p.disciplinas.includes(disciplina) &&
+            Array.isArray(p.turmas) && p.turmas.includes(turma));
+        return prof ? prof.id : null;
+    }
+    function disciplinasDoAluno(aluno) {
+        const notas = (aluno.notas && typeof aluno.notas === "object") ? Object.keys(aluno.notas) : [];
+        if (notas.length) return notas;
+        return Object.keys(notasPadrao(aluno.curso || "Regular"));
+    }
+    function isAlunoDestaque(aluno) {
+        const email = String(aluno.email || "").toLowerCase();
+        return email === "cristiandavi@abel.edu.br" || email === "joycelorena@abel.edu.br";
+    }
+
+    // Garante atividades por turma/disciplina
+    const turmas = [...new Set(dados.alunos.map(a => a.turma).filter(Boolean))];
+    turmas.forEach(turma => {
+        const alunosTurma = dados.alunos.filter(a => a.turma === turma);
+        if (!alunosTurma.length) return;
+        const discSet = new Set();
+        alunosTurma.forEach(a => disciplinasDoAluno(a).forEach(d => discSet.add(d)));
+        const disciplinas = [...discSet];
+        disciplinas.forEach((disciplina, di) => {
+            datasAtividades.forEach((dataEntrega, ai) => {
+                const titulo = `Atividade ${ai + 1} - ${disciplina}`;
+                const ja = (dados.atividades || []).find(at => at.turma === turma && at.disciplina === disciplina && at.titulo === titulo);
+                if (ja) return;
+                dados.atividades.push({
+                    id: proximoIdRegistro(dados.atividades),
+                    titulo,
+                    descricao: `Atividade de simulação para ${disciplina}.`,
+                    disciplina,
+                    turma,
+                    dataEntrega,
+                    professorId: pickProfessor(disciplina, turma),
+                    criadoEm: agoraIso
+                });
+            });
+        });
+    });
+
+    // Garante frequência e entregas por aluno
+    dados.alunos.forEach(aluno => {
+        if (!Array.isArray(aluno.registrosFrequencia)) aluno.registrosFrequencia = [];
+        if (!Array.isArray(aluno.registrosNotas)) aluno.registrosNotas = [];
+        if (!Array.isArray(aluno.historicoIPACalculado)) aluno.historicoIPACalculado = [];
+
+        const destaque = isAlunoDestaque(aluno);
+        const disciplinas = disciplinasDoAluno(aluno).slice(0, destaque ? 8 : 6);
+        const base = hashSeed(String(aluno.id) + "|" + aluno.nome);
+
+        disciplinas.forEach((disciplina, di) => {
+            const profId = pickProfessor(disciplina, aluno.turma);
+            datasFrequencia.forEach((data, i) => {
+                const aulaId = `SIM-${disciplina}-${data}`;
+                const existe = aluno.registrosFrequencia.some(r => r.disciplina === disciplina && r.data === data && String(r.aulaId) === String(aulaId));
+                if (existe) return;
+                const roll = (base + di * 17 + i * 31) % 100;
+                const presenca = destaque ? roll < 96 : roll < 84;
+                aluno.registrosFrequencia.push({
+                    id: proximoIdRegistro(aluno.registrosFrequencia),
+                    disciplina,
+                    data,
+                    aulaId,
+                    turma: aluno.turma || "Não definida",
+                    presenca,
+                    origem: "seed",
+                    professorId: profId,
+                    criadoEm: agoraIso,
+                    atualizadoEm: agoraIso
+                });
+            });
+        });
+
+        const atividadesTurma = (dados.atividades || []).filter(at => at.turma === aluno.turma && disciplinas.includes(at.disciplina));
+        atividadesTurma.forEach((at, idx) => {
+            const existe = (dados.entregas || []).some(e => String(e.atividadeId) === String(at.id) && String(e.alunoId) === String(aluno.id));
+            if (existe) return;
+            const roll = (base + idx * 13) % 100;
+            let status;
+            if (destaque) status = roll < 92 ? "entregue" : (roll < 97 ? "atrasada" : "pendente");
+            else status = roll < 62 ? "entregue" : (roll < 78 ? "atrasada" : "pendente");
+            dados.entregas.push({
+                id: proximoIdRegistro(dados.entregas),
+                atividadeId: at.id,
+                alunoId: aluno.id,
+                disciplina: at.disciplina,
+                turma: aluno.turma || at.turma,
+                status,
+                dataEntrega: status === "pendente" ? null : at.dataEntrega,
+                observacao: status === "pendente" ? "Atividade não realizada (simulação)." : "Entrega registrada para simulação.",
+                professorId: at.professorId || pickProfessor(at.disciplina, aluno.turma),
+                criadoEm: agoraIso,
+                atualizadoEm: agoraIso
+            });
+        });
+
+        aluno.dadosDemonstrativos = avaliarDadosDemonstrativos(aluno);
+    });
+
+    dados.seedCompletaV1 = true;
+    return dados;
+}
+
 // Migração idempotente: transforma notas demonstrativas em registros de
 // desempenho rastreáveis, sem apagar os campos originais nem o histórico antigo.
 function migrarDados(dados) {
@@ -2619,6 +2943,8 @@ function migrarDados(dados) {
     }
 
     if (versao < 6) migrarV6(dados);
+    seedDadosSimulacao(dados);
+    if (versao < 7) dados.schemaVersao = 7;
 
     dados.migracao = {
         versao: SCHEMA_VERSAO,
@@ -2633,12 +2959,25 @@ function migrarDados(dados) {
 function carregarDados() {
     try {
         const salvo = localStorage.getItem(STORAGE_KEY);
-        if (salvo) return migrarDados(JSON.parse(salvo));
+        if (salvo) {
+            const dados = migrarDados(JSON.parse(salvo));
+            if (dados.seedCompletaV1 && !dados._ipaSeedRecalc && typeof IPA !== "undefined" && IPA.recalcular) {
+                dados.alunos.forEach(a => IPA.recalcular(a.id, "Seed de simulação", dados));
+                dados._ipaSeedRecalc = true;
+                salvarDados(dados);
+            }
+            return dados;
+        }
     } catch (e) {
         console.warn("Falha ao ler dados do localStorage", e);
     }
     const base = structuredClone(DADOS_BASE);
     migrarDados(base);
+    if (typeof IPA !== "undefined" && IPA.recalcular) {
+        base.alunos.forEach(a => IPA.recalcular(a.id, "Seed de simulação", base));
+        base._ipaSeedRecalc = true;
+        salvarDados(base);
+    }
     return base;
 }
 
@@ -3267,6 +3606,9 @@ function getAvisosParaUsuario(sessao) {
 }
 
 function adicionarAviso(campos, sessao) {
+    if (!sessao || sessao.tipo !== "coordenacao") {
+        throw new Error("Somente a coordenação pode publicar avisos.");
+    }
     const dados = carregarDados();
     if (!Array.isArray(dados.avisos)) dados.avisos = [];
     const id = dados.avisos.reduce((m, a) => Math.max(m, Number(a.id) || 0), 0) + 1;
@@ -3274,9 +3616,7 @@ function adicionarAviso(campos, sessao) {
         id,
         titulo: campos.titulo.trim(),
         texto: campos.texto.trim(),
-        autor: (sessao && sessao.tipo === "aluno")
-            ? "Aluno"
-            : "Coordenação Pedagógica",
+        autor: "Coordenação Pedagógica",
         data: new Date().toISOString(),
         turma: campos.turma || null,
         lidoPor: []
@@ -3287,6 +3627,10 @@ function adicionarAviso(campos, sessao) {
 }
 
 function removerAviso(id) {
+    const sessao = getSessao();
+    if (sessao && sessao.tipo !== "coordenacao") {
+        throw new Error("Somente a coordenação pode remover avisos.");
+    }
     const dados = carregarDados();
     if (!Array.isArray(dados.avisos)) return;
     dados.avisos = dados.avisos.filter(a => Number(a.id) !== Number(id));
@@ -3372,15 +3716,28 @@ function getSessao() {
     }
 }
 
+function homePorTipo(tipo) {
+    if (tipo === "coordenacao") return "dashboard.html";
+    if (tipo === "professor") return "professor.html";
+    if (tipo === "aluno") return "portal-aluno.html";
+    return "index.html";
+}
+
 function encerrarSessao() {
     sessionStorage.removeItem(SESSION_KEY);
     window.location.href = "index.html";
 }
 
-function protegerPagina(tipoEsperado) {
+function protegerPagina(tiposPermitidos) {
     const sessao = getSessao();
-    if (!sessao || sessao.tipo !== tipoEsperado) {
+    if (!sessao) {
         window.location.href = "index.html";
+        return null;
+    }
+
+    const permitidos = Array.isArray(tiposPermitidos) ? tiposPermitidos : [tiposPermitidos];
+    if (!permitidos.includes(sessao.tipo)) {
+        window.location.href = homePorTipo(sessao.tipo);
         return null;
     }
     return sessao;

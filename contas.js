@@ -4,7 +4,7 @@
 // ==========================================
 
 protegerPagina("coordenacao");
-App.initSidebar("contas");
+App.initSidebar("contas", "coordenacao");
 
 function render() {
     const coords = getCoordenadores();

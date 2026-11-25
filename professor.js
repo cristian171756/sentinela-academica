@@ -283,7 +283,7 @@ if (sessao) {
                         </div>
                         <div style="display:flex;gap:6px;flex-wrap:wrap;">
                             <button type="button" class="btn btn-ver-entregas" data-id="${a.id}" style="width:auto;margin:0;">Ver entregas</button>
-                            ${responsavel ? `<button type="button" class="btn btn-editar-atv" data-id="${a.id}" style="width:auto;margin:0;background:#2563EB;">Editar</button>
+                            ${responsavel ? `<button type="button" class="btn btn-editar-atv" data-id="${a.id}" style="width:auto;margin:0;">Editar</button>
                             <button type="button" class="btn btn-excluir-atv" data-id="${a.id}" style="width:auto;margin:0;background:#EF4444;">Excluir</button>` : ""}
                         </div>
                     </div>
@@ -554,7 +554,7 @@ if (sessao) {
                         });
                         return valores.length ? IPA.media(valores) : null;
                     });
-                    return { labels: disciplinas, data: medias, cor: "#2563EB" };
+                    return { labels: disciplinas, data: medias, cor: "#090E3F" };
                 }
 
                 case "desempenhoAlunos": {
@@ -582,7 +582,7 @@ if (sessao) {
                     return {
                         labels: ["Notas Baixas (< 5)", "Notas Médias (5-7)", "Boas Notas (≥ 7)"],
                         data: [baixas, medias, boas],
-                        cores: ["#EF4444", "#F59E0B", "#14B8A6"]
+                        cores: ["#EF4444", "#F5C400", "#090E3F"]
                     };
                 }
 
@@ -598,11 +598,11 @@ if (sessao) {
                         else if (f < 90) contagem[3]++;
                         else contagem[4]++;
                     });
-                    return { labels: faixas, data: contagem, cor: "#7C3AED" };
+                    return { labels: faixas, data: contagem, cor: "#F5C400" };
                 }
 
                 default:
-                    return { labels: [], data: [], cor: "#2563EB" };
+                    return { labels: [], data: [], cor: "#090E3F" };
             }
         }
 

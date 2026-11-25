@@ -3,10 +3,8 @@
 // Perfil do Aluno — detalhamento do IPA
 // ==========================================
 
-const sessao = getSessao();
-if (!sessao) {
-    window.location.href = "index.html";
-} else {
+const sessao = protegerPagina(["coordenacao", "aluno"]);
+if (sessao) {
     App.initSidebar(sessao.tipo === "aluno" ? "perfil" : "alunos",
                     sessao.tipo === "aluno" ? "aluno" : "coordenacao");
 
@@ -23,7 +21,7 @@ if (!sessao) {
     }
 
     if (!aluno) {
-        encerrarSessao();
+        window.location.href = homePorTipo(sessao.tipo);
     } else {
         const calc = IPA.calcularPara(aluno, carregarDados());
         const st = calc.classificacao;
@@ -119,10 +117,10 @@ if (!sessao) {
                 datasets: [{
                     label: "IPA",
                     data: serie.ipa,
-                    borderColor: "#2563EB",
-                    backgroundColor: "rgba(37,99,235,.12)",
+                    borderColor: "#090E3F",
+                    backgroundColor: "rgba(9,14,63,.08)",
                     fill: true, tension: .4,
-                    pointRadius: 4, pointBackgroundColor: "#2563EB",
+                    pointRadius: 4, pointBackgroundColor: "#F5C400",
                     spanGaps: false
                 }]
             },

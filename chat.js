@@ -3,8 +3,8 @@
 // Chat das turmas
 // ==========================================
 
-const sess = getSessao();
-if (!sess) { window.location.href = "index.html"; throw new Error("sem sessão"); }
+const sess = protegerPagina(["coordenacao", "aluno"]);
+if (!sess) throw new Error("sem sessão");
 const tipo = sess.tipo;
 App.initSidebar("chat");
 

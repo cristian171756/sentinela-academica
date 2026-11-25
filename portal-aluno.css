@@ -6,14 +6,14 @@
     width:68px;
     height:68px;
     border-radius:20px;
-    background:linear-gradient(135deg,#2563EB,#1D4ED8);
+    background:linear-gradient(135deg,#090E3F,#141B63);
     color:#fff;
     display:flex;
     align-items:center;
     justify-content:center;
     font-size:24px;
     font-weight:800;
-    box-shadow:0 8px 20px rgba(37,99,235,.35);
+    box-shadow:0 8px 20px rgba(9,14,63,.28);
 }
 
 .status-visual{
@@ -26,7 +26,7 @@
 
 .anel{
     --valor:0;
-    --cor:#2563EB;
+    --cor:#090E3F;
     width:160px;
     height:160px;
     border-radius:50%;
@@ -77,7 +77,7 @@
     font-weight:500;
 }
 
-.status-turma i{ margin-right:6px; color:#2563EB; }
+.status-turma i{ margin-right:6px; color:#090E3F; }
 
 .status-text.green{ color:#0F766E; }
 .status-text.yellow{ color:#D97706; }

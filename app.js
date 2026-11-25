@@ -21,6 +21,7 @@ const App = {
         { key: "notas", href: "professor.html", icon: "fa-pen-to-square", label: "Lançar Notas" },
         { key: "frequencia", href: "professor.html#frequencia", icon: "fa-calendar-check", label: "Frequência" },
         { key: "atividades", href: "professor.html#atividades", icon: "fa-list-check", label: "Atividades" },
+        { key: "avisos", href: "avisos.html", icon: "fa-bullhorn", label: "Avisos" },
         { key: "configuracoes", href: "configuracoes.html", icon: "fa-gear", label: "Configurações" }
     ],
 
@@ -34,8 +35,14 @@ const App = {
         { key: "frequencia", href: "portal-aluno.html#frequencia", icon: "fa-calendar-check", label: "Frequência" }
     ],
 
+    tipoSessaoValido(tipo) {
+        return ["coordenacao", "professor", "aluno"].includes(tipo);
+    },
+
     montarSidebar(active, tipo) {
-        const nav = tipo === "aluno" ? this._navAluno : tipo === "professor" ? this._navProfessor : this._navCoordenacao;
+        const sessao = (typeof getSessao === "function") ? getSessao() : null;
+        const tipoSeguro = this.tipoSessaoValido(tipo) ? tipo : (sessao && this.tipoSessaoValido(sessao.tipo) ? sessao.tipo : "coordenacao");
+        const nav = tipoSeguro === "aluno" ? this._navAluno : tipoSeguro === "professor" ? this._navProfessor : this._navCoordenacao;
         const itens = nav.map(item => `
             <a href="${item.href}" class="${item.key === active ? "active" : ""}">
                 <i class="fa-solid ${item.icon}"></i>
@@ -43,31 +50,28 @@ const App = {
             </a>
         `).join("");
 
-        const rodape = tipo === "aluno"
+        const rodape = tipoSeguro === "aluno"
             ? `<div class="user-mini"><i class="fa-solid fa-user-graduate"></i><span>Área do Aluno</span></div>`
-            : tipo === "professor"
+            : tipoSeguro === "professor"
                 ? `<div class="user-mini"><i class="fa-solid fa-chalkboard-user"></i><span>Área do Professor</span></div>`
                 : `<div class="user-mini"><i class="fa-solid fa-user-shield"></i><span>Coordenação Pedagógica</span></div>`;
 
         // Foto de perfil do usuário logado
         let fotoPerfil = "";
         let nomeUsuario = "";
-        if (typeof getSessao === "function") {
-            const sessao = getSessao();
-            if (sessao) {
-                const foto = Pref.getFoto(sessao.tipo, sessao.referencia);
-                if (foto) {
-                    fotoPerfil = `<img src="${foto}" alt="Foto de perfil" style="width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.3);">`;
-                }
-                if (sessao.tipo === "aluno") {
-                    const aluno = getAlunoPorId(sessao.referencia);
-                    nomeUsuario = aluno ? aluno.nome.split(" ")[0] : "Aluno";
-                } else if (sessao.tipo === "professor") {
-                    const prof = getProfessorPorId(sessao.referencia);
-                    nomeUsuario = prof ? prof.nome : "Professor";
-                } else {
-                    nomeUsuario = "Coordenação";
-                }
+        if (sessao) {
+            const foto = (typeof Pref !== "undefined" && Pref.getFoto) ? Pref.getFoto(sessao.tipo, sessao.referencia) : null;
+            if (foto) {
+                fotoPerfil = `<img src="${foto}" alt="Foto de perfil" style="width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.3);">`;
+            }
+            if (sessao.tipo === "aluno" && typeof getAlunoPorId === "function") {
+                const aluno = getAlunoPorId(sessao.referencia);
+                nomeUsuario = aluno ? aluno.nome.split(" ")[0] : "Aluno";
+            } else if (sessao.tipo === "professor" && typeof getProfessorPorId === "function") {
+                const prof = getProfessorPorId(sessao.referencia);
+                nomeUsuario = prof ? prof.nome : "Professor";
+            } else {
+                nomeUsuario = "Coordenação";
             }
         }
 
@@ -84,10 +88,12 @@ const App = {
         `;
     },
 
-    initSidebar(active, tipo = "coordenacao") {
+    initSidebar(active, tipo) {
         const el = document.getElementById("sidebar");
         if (!el) return;
-        el.innerHTML = this.montarSidebar(active, tipo);
+        const sessao = (typeof getSessao === "function") ? getSessao() : null;
+        const tipoSeguro = this.tipoSessaoValido(tipo) ? tipo : (sessao && this.tipoSessaoValido(sessao.tipo) ? sessao.tipo : "coordenacao");
+        el.innerHTML = this.montarSidebar(active, tipoSeguro);
         const btn = document.getElementById("btnSair");
         if (btn) btn.addEventListener("click", encerrarSessao);
 
@@ -134,40 +140,76 @@ const App = {
         const wrap = document.createElement("div");
         wrap.className = "notif-wrap";
         wrap.innerHTML = `
-            <button class="notif-btn" id="btnNotificacoes" aria-label="Notificações">
+            <button class="notif-btn" id="btnNotificacoes" aria-label="Notificações" aria-expanded="false">
                 <i class="fa-solid fa-bell"></i>
                 <span class="notif-badge" id="notifBadge" style="display:none;">0</span>
             </button>
-            <div class="notif-dropdown" id="notifDropdown">
-                <div class="notif-header">
-                    <strong>Avisos</strong>
-                    <button class="notif-marcar" id="notifMarcar">Marcar tudo como lido</button>
-                </div>
-                <div class="notif-lista" id="notifLista"></div>
-            </div>
         `;
         topBar.appendChild(wrap);
 
+        const dd = document.createElement("div");
+        dd.className = "notif-dropdown";
+        dd.id = "notifDropdown";
+        dd.setAttribute("aria-hidden", "true");
+        dd.innerHTML = `
+            <div class="notif-header">
+                <strong>Avisos</strong>
+                <button class="notif-marcar" id="notifMarcar" type="button">Marcar tudo como lido</button>
+            </div>
+            <div class="notif-lista" id="notifLista"></div>
+        `;
+        document.body.appendChild(dd);
+
         const btn = document.getElementById("btnNotificacoes");
-        const dd = document.getElementById("notifDropdown");
+        const posicionarDropdown = () => {
+            if (!dd.classList.contains("open")) return;
+            const rect = btn.getBoundingClientRect();
+            const largura = Math.min(360, window.innerWidth - 16);
+            const left = Math.max(8, Math.min(rect.right - largura, window.innerWidth - largura - 8));
+            const top = Math.min(rect.bottom + 10, window.innerHeight - 120);
+            dd.style.width = `${largura}px`;
+            dd.style.left = `${left}px`;
+            dd.style.top = `${top}px`;
+            dd.style.right = "auto";
+        };
+
+        const fecharDropdown = () => {
+            dd.classList.remove("open");
+            dd.setAttribute("aria-hidden", "true");
+            btn.setAttribute("aria-expanded", "false");
+        };
+
+        const abrirDropdown = () => {
+            dd.classList.add("open");
+            dd.setAttribute("aria-hidden", "false");
+            btn.setAttribute("aria-expanded", "true");
+            posicionarDropdown();
+            this._carregarNotificacoes(sessao);
+        };
 
         btn.addEventListener("click", (e) => {
             e.stopPropagation();
-            dd.classList.toggle("open");
-            if (dd.classList.contains("open")) {
-                this._carregarNotificacoes(sessao);
+            if (dd.classList.contains("open")) fecharDropdown();
+            else abrirDropdown();
+        });
+
+        dd.addEventListener("click", (e) => e.stopPropagation());
+
+        document.addEventListener("click", (e) => {
+            if (!e.target.closest(".notif-wrap") && !e.target.closest("#notifDropdown")) {
+                fecharDropdown();
             }
         });
 
-        document.addEventListener("click", (e) => {
-            if (!e.target.closest(".notif-wrap")) dd.classList.remove("open");
-        });
+        window.addEventListener("resize", posicionarDropdown);
+        window.addEventListener("scroll", posicionarDropdown, true);
 
         document.getElementById("notifMarcar").addEventListener("click", () => {
             marcarTodosAvisosLidos(sessao);
             this._carregarNotificacoes(sessao);
         });
 
+        this._posicionarNotifDropdown = posicionarDropdown;
         this._carregarNotificacoes(sessao);
         this._timerNotif = setInterval(() => this._carregarNotificacoes(sessao), 10000);
     },
@@ -189,29 +231,43 @@ const App = {
         }
 
         if (avisos.length === 0) {
-            lista.innerHTML = `<div class="notif-vazio">Nenhum aviso.</div>`;
+            lista.innerHTML = `<div class="notif-vazio"><i class="fa-regular fa-bell-slash"></i><span>Nenhum aviso por aqui.</span></div>`;
+            if (typeof this._posicionarNotifDropdown === "function") this._posicionarNotifDropdown();
             return;
         }
 
         lista.innerHTML = avisos.map(a => {
             const lido = Array.isArray(a.lidoPor) && a.lidoPor.includes(chave);
             const data = new Date(a.data).toLocaleString("pt-BR", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" });
+            const titulo = String(a.titulo || "").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            const texto = String(a.texto || "").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            const autor = String(a.autor || "").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            const turma = a.turma ? ` • ${String(a.turma).replace(/</g, "&lt;").replace(/>/g, "&gt;")}` : "";
             return `
-                <div class="notif-item ${lido ? "lido" : "nao-lido"}" data-id="${a.id}">
-                    <div class="notif-titulo">${a.titulo}</div>
-                    <div class="notif-texto">${a.texto}</div>
-                    <div class="notif-meta">${a.autor} • ${data}${a.turma ? " • " + a.turma : ""}</div>
+                <div class="notif-item ${lido ? "lido" : "nao-lido"}" data-id="${a.id}" role="button" tabindex="0">
+                    <div class="notif-titulo">${titulo}</div>
+                    <div class="notif-texto">${texto}</div>
+                    <div class="notif-meta">${autor} • ${data}${turma}</div>
                 </div>
             `;
         }).join("");
 
         lista.querySelectorAll(".notif-item").forEach(el => {
-            el.addEventListener("click", () => {
+            const marcar = () => {
                 const id = Number(el.dataset.id);
                 marcarAvisoLido(id, sessao);
                 this._carregarNotificacoes(sessao);
+            };
+            el.addEventListener("click", marcar);
+            el.addEventListener("keydown", (e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    marcar();
+                }
             });
         });
+
+        if (typeof this._posicionarNotifDropdown === "function") this._posicionarNotifDropdown();
     },
 
     // Gera as iniciais para avatar

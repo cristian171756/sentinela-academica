@@ -57,15 +57,21 @@
         <div class="chart-card card-text" style="margin-bottom:20px;">
             <h2><i class="fa-solid fa-camera"></i> Foto de Perfil</h2>
             <p class="obs">Adicione uma foto para aparecer no seu perfil e nos chats.</p>
-            <div class="config-row">
-                <div class="foto-preview" id="fotoPreview">
-                    <i class="fa-solid fa-user"></i>
+            <div class="config-row config-row-foto">
+                <div class="foto-perfil-wrap">
+                    <div class="foto-preview" id="fotoPreview">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="foto-perfil-info">
+                        <strong>Sua foto</strong>
+                        <p class="obs" style="margin:4px 0 0;">JPG, PNG ou WEBP. A imagem é ajustada automaticamente para ficar centralizada.</p>
+                    </div>
                 </div>
                 <div class="foto-actions">
-                    <button class="btn" id="btnUploadFoto" style="width:auto;">
+                    <button class="btn" id="btnUploadFoto" type="button">
                         <i class="fa-solid fa-upload"></i> Escolher Foto
                     </button>
-                    <button class="btn btn-perigo" id="btnRemoverFoto" style="width:auto;">
+                    <button class="btn btn-perigo" id="btnRemoverFoto" type="button">
                         <i class="fa-solid fa-trash"></i> Remover
                     </button>
                     <input type="file" id="inputFoto" accept="image/*" style="display:none;">

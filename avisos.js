@@ -3,8 +3,8 @@
 // Avisos / Notificações
 // ==========================================
 
-const sess = getSessao();
-if (!sess) { window.location.href = "index.html"; throw new Error("sem sessão"); }
+const sess = protegerPagina(["coordenacao", "aluno", "professor"]);
+if (!sess) throw new Error("sem sessão");
 
 const tipo = sess.tipo;
 App.initSidebar("avisos");
@@ -24,6 +24,8 @@ if (tipo === "coordenacao") {
         opt.textContent = t;
         sel.appendChild(opt);
     });
+} else if (tipo === "professor") {
+    subtitulo.textContent = "Comunicados da coordenação para a equipe escolar.";
 } else {
     subtitulo.textContent = "Comunicados da escola para você.";
 }
@@ -43,7 +45,7 @@ function render() {
         const podeRemover = tipo === "coordenacao";
         return `
             <div class="aviso-card">
-                <h3>${a.titulo} ${!lido ? '<span style="font-size:11px;background:#EFF6FF;color:#2563EB;padding:3px 8px;border-radius:6px;">Novo</span>' : ''}</h3>
+                <h3>${a.titulo} ${!lido ? '<span style="font-size:11px;background:#FFF3A3;color:#090E3F;padding:3px 8px;border-radius:6px;">Novo</span>' : ''}</h3>
                 <p>${a.texto}</p>
                 <div class="aviso-meta">
                     ${a.autor} • ${data}${a.turma ? " • " + a.turma : " • Todos"}
@@ -82,9 +84,4 @@ document.getElementById("formAviso")?.addEventListener("submit", (e) => {
     render();
 });
 
-// proteger manualmente
-if (!sess) {
-    window.location.href = "index.html";
-} else {
-    render();
-}
+render();

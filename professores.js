@@ -4,7 +4,7 @@
 // ==========================================
 
 protegerPagina("coordenacao");
-App.initSidebar("professores");
+App.initSidebar("professores", "coordenacao");
 
 const TODAS_DISCIPLINAS = [
     "Arte","Biologia","Educação Física","Filosofia","Física","Geografia",
