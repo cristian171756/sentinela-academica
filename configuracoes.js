@@ -148,3 +148,30 @@ function atualizarStatusOnline() {
 
 atualizarStatusOnline();
 setInterval(atualizarStatusOnline, 60000);
+
+// ======== RECUPERAÇÃO DOS DADOS ORIGINAIS (SOMENTE COORDENAÇÃO) ========
+const painelRecuperacao = document.getElementById("painelRecuperacao");
+if (painelRecuperacao) {
+    if (sessaoConfig.tipo !== "coordenacao") {
+        painelRecuperacao.style.display = "none";
+    } else {
+        const btnRestaurar = document.getElementById("btnRestaurarOriginal");
+        const msgRestauracao = document.getElementById("msgRestauracao");
+        btnRestaurar.addEventListener("click", () => {
+            if (!localStorage.getItem("sentinela_dados_v4_backup")) {
+                msgRestauracao.textContent = "Nenhum backup original disponível neste navegador.";
+                msgRestauracao.style.color = "#EF4444";
+                return;
+            }
+            if (!confirm("Substituir os dados atuais pelos originais? O estado atual será guardado separadamente.")) return;
+            try {
+                restaurarBackupOriginal();
+                msgRestauracao.textContent = "Dados originais recuperados e IPA recalculado.";
+                msgRestauracao.style.color = "#14B8A6";
+            } catch (erro) {
+                msgRestauracao.textContent = erro.message;
+                msgRestauracao.style.color = "#EF4444";
+            }
+        });
+    }
+}

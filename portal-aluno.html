@@ -38,10 +38,12 @@
 
         <section class="cards" id="cardsAluno"></section>
 
+        <section class="chart-card" id="painelIPA" style="margin-top:20px;"></section>
+
         <section class="dashboard-grid">
 
             <div class="chart-card">
-                <h2>Sua Evolução</h2>
+                <h2 id="tituloEvolucao">Sua Evolução</h2>
                 <canvas id="graficoEvolucao"></canvas>
             </div>
 
@@ -58,6 +60,13 @@
         </section>
 
         <section class="table-card" id="frequencia" style="margin-top:20px;">
+            <h2 style="padding:22px 22px 0;">Registros de Frequência</h2>
+            <table>
+                <thead>
+                    <tr><th>Data</th><th>Disciplina</th><th>Aula</th><th>Situação</th><th>Origem</th></tr>
+                </thead>
+                <tbody id="tabelaFrequenciaAluno"></tbody>
+            </table>
             <h2 style="padding:22px 22px 0;">Boletim Detalhado</h2>
             <table>
                 <thead>
@@ -85,6 +94,8 @@
 </div>
 
 <script src="dados.js"></script>
+
+<script src="ipa.js"></script>
 <script src="preferencias.js"></script>
 <script src="app.js"></script>
 <script src="portal-aluno.js"></script>

@@ -22,7 +22,7 @@
             </div>
         </header>
 
-        <section class="chart-card card-text" style="margin-bottom:20px;">
+        <section class="chart-card card-text" id="notas" style="margin-bottom:20px;">
             <h2>Lançar Nota</h2>
             <form id="formNota" class="form-grid-4">
                 <div class="group" style="margin:0;">
@@ -49,6 +49,114 @@
                 <button class="btn" type="submit" style="width:auto;margin:0;">Salvar Nota</button>
             </form>
             <p id="msgNota" style="margin-top:10px;"></p>
+        </section>
+
+        <section class="chart-card card-text" id="resumoIPAProfessor" style="margin-bottom:20px;">
+            <h2><i class="fa-solid fa-shield-heart"></i> IPA do aluno selecionado</h2>
+            <div id="conteudoResumoIPA"></div>
+        </section>
+
+        <section class="chart-card card-text" id="frequencia" style="margin-bottom:20px;">
+            <h2><i class="fa-solid fa-calendar-check"></i> Registrar Frequência</h2>
+            <p style="color:#64748b;margin-bottom:16px;">
+                Registre presença ou falta por disciplina e data. Para corrigir, selecione o aluno/disciplina/data e salve novamente.
+            </p>
+            <form id="formFrequencia" class="form-grid-4">
+                <div class="group" style="margin:0;">
+                    <label>Turma</label>
+                    <select id="selectTurmaFreq" required style="width:100%;padding:10px;border-radius:8px;"></select>
+                </div>
+                <div class="group" style="margin:0;">
+                    <label>Aluno</label>
+                    <select id="selectAlunoFreq" required style="width:100%;padding:10px;border-radius:8px;"></select>
+                </div>
+                <div class="group" style="margin:0;">
+                    <label>Disciplina</label>
+                    <select id="selectDiscFreq" required style="width:100%;padding:10px;border-radius:8px;"></select>
+                </div>
+                <div class="group" style="margin:0;">
+                    <label>Data da aula</label>
+                    <input type="date" id="inputDataFreq" required style="width:100%;padding:10px;border-radius:8px;">
+                </div>
+                <div class="group" style="margin:0;">
+                    <label>Aula (nº/identificação)</label>
+                    <input type="text" id="inputAulaFreq" required placeholder="Ex.: 1ª aula" style="width:100%;padding:10px;border-radius:8px;">
+                </div>
+                <div class="group" style="margin:0;">
+                    <label>Registro</label>
+                    <select id="selectPresenca" style="width:100%;padding:10px;border-radius:8px;">
+                        <option value="presente">Presença</option>
+                        <option value="falta">Falta</option>
+                    </select>
+                </div>
+                <button class="btn" type="submit" id="btnSalvarFreq" style="width:auto;margin:0;">Salvar Frequência</button>
+            </form>
+            <p id="msgFrequencia" style="margin-top:10px;"></p>
+            <h3 style="margin-top:22px;">Registros do aluno</h3>
+            <table>
+                <thead>
+                    <tr><th>Data</th><th>Disciplina</th><th>Aula</th><th>Situação</th><th>Origem</th><th></th></tr>
+                </thead>
+                <tbody id="tabelaFrequencia"></tbody>
+            </table>
+        </section>
+
+        <section class="chart-card card-text" id="atividades" style="margin-bottom:20px;">
+            <h2><i class="fa-solid fa-list-check"></i> Atividades por Disciplina</h2>
+            <form id="formAtividade" class="form-grid-4">
+                <div class="group" style="margin:0;">
+                    <label>Título</label>
+                    <input type="text" id="inputTituloAtv" required placeholder="Ex.: Lista de exercícios" style="width:100%;padding:10px;border-radius:8px;">
+                </div>
+                <div class="group" style="margin:0;">
+                    <label>Disciplina</label>
+                    <select id="selectDiscAtv" required style="width:100%;padding:10px;border-radius:8px;"></select>
+                </div>
+                <div class="group" style="margin:0;">
+                    <label>Turma</label>
+                    <select id="selectTurmaAtv" required style="width:100%;padding:10px;border-radius:8px;"></select>
+                </div>
+                <div class="group" style="margin:0;">
+                    <label>Data de entrega</label>
+                    <input type="date" id="inputDataAtv" required style="width:100%;padding:10px;border-radius:8px;">
+                </div>
+                <div class="group" style="margin:0;grid-column:span 2;">
+                    <label>Descrição</label>
+                    <input type="text" id="inputDescricaoAtv" placeholder="Descrição da atividade" style="width:100%;padding:10px;border-radius:8px;">
+                </div>
+                <button class="btn" type="submit" id="btnSalvarAtividade" style="width:auto;margin:0;">Cadastrar Atividade</button>
+                <button class="btn" type="button" id="btnCancelarEdicaoAtv" style="width:auto;margin:0;display:none;background:#64748b;">Cancelar edição</button>
+            </form>
+            <p id="msgAtividade" style="margin-top:10px;"></p>
+
+            <h3 style="margin-top:22px;">Atividades cadastradas</h3>
+            <div id="listaAtividadesProfessor"></div>
+
+            <div id="painelEntregas" class="ipa-entregas" style="display:none;margin-top:20px;">
+                <h3 id="tituloEntregas">Entregas</h3>
+                <form id="formEntrega" class="form-grid-4">
+                    <div class="group" style="margin:0;">
+                        <label>Aluno</label>
+                        <select id="selectAlunoEntrega" required style="width:100%;padding:10px;border-radius:8px;"></select>
+                    </div>
+                    <div class="group" style="margin:0;">
+                        <label>Status</label>
+                        <select id="selectStatusEntrega" style="width:100%;padding:10px;border-radius:8px;">
+                            <option value="pendente">Pendente</option>
+                            <option value="entregue">Entregue</option>
+                            <option value="atrasada">Atrasada (entregue fora do prazo)</option>
+                        </select>
+                    </div>
+                    <button class="btn" type="submit" style="width:auto;margin:0;">Salvar Entrega</button>
+                </form>
+                <p id="msgEntrega" style="margin-top:10px;"></p>
+                <table>
+                    <thead>
+                        <tr><th>Aluno</th><th>Status</th><th>Atualizado em</th><th>Ações</th></tr>
+                    </thead>
+                    <tbody id="tabelaEntregas"></tbody>
+                </table>
+            </div>
         </section>
 
         <!-- Sistema de Gráficos do Professor -->
@@ -100,6 +208,8 @@
                         <th>Disciplina</th>
                         <th>1º</th><th>2º</th><th>3º</th><th>4º</th>
                         <th>Média</th>
+                        <th>Origem</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody id="tabelaProfessor"></tbody>
@@ -108,6 +218,7 @@
     </main>
 </div>
 <script src="dados.js"></script>
+<script src="ipa.js"></script>
 <script src="preferencias.js"></script>
 <script src="app.js"></script>
 <script src="professor.js"></script>

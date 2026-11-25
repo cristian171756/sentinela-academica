@@ -1,20 +1,29 @@
 // ==========================================
 // SENTINELA ACADÊMICA
-// Relatórios
-// =========================================
+// Relatórios com resultados calculados pelo IPA
+// ==========================================
 
 protegerPagina("coordenacao");
 App.initSidebar("relatorios");
 
 const alunos = getAlunos();
+const dadosRelatorios = carregarDados();
+const calculos = new Map(alunos.map(a => [String(a.id), IPA.calcularPara(a, dadosRelatorios)]));
 const total = alunos.length;
 
-const verde = alunos.filter(a => a.ipa < 40).length;
-const amarelo = alunos.filter(a => a.ipa >= 40 && a.ipa < 70).length;
-const vermelho = alunos.filter(a => a.ipa >= 70).length;
+function calcDe(aluno) {
+    return calculos.get(String(aluno.id));
+}
 
-const mediaGeral = total > 0 ? (alunos.reduce((s, a) => s + a.media, 0) / total).toFixed(1) : "0.0";
-const freqMedia = total > 0 ? Math.round(alunos.reduce((s, a) => s + a.frequencia, 0) / total) : 0;
+const verde = alunos.filter(a => calcDe(a).classificacao.chave === "baixa").length;
+const amarelo = alunos.filter(a => calcDe(a).classificacao.chave === "moderada").length;
+const vermelho = alunos.filter(a => calcDe(a).classificacao.chave === "alta").length;
+const pendentes = alunos.filter(a => !calcDe(a).completo).length;
+
+const medias = alunos.map(a => calcDe(a).mediaGeral).filter(IPA.ehNumero);
+const mediaGeral = medias.length ? (medias.reduce((s, v) => s + v, 0) / medias.length).toFixed(1) : "—";
+const frequencias = alunos.map(a => calcDe(a).indicadores.F).filter(IPA.ehNumero);
+const freqMedia = frequencias.length ? Math.round(frequencias.reduce((s, v) => s + v, 0) / frequencias.length) : null;
 
 document.getElementById("cardsRelatorio").innerHTML = `
     <div class="card-info">
@@ -23,11 +32,11 @@ document.getElementById("cardsRelatorio").innerHTML = `
     </div>
     <div class="card-info">
         <i class="fa-solid fa-star"></i>
-        <div><h3>${mediaGeral}</h3><span>Média Geral</span></div>
+        <div><h3>${mediaGeral}</h3><span>Média Geral calculada</span></div>
     </div>
     <div class="card-info">
         <i class="fa-solid fa-calendar-check"></i>
-        <div><h3>${freqMedia}%</h3><span>Frequência Média</span></div>
+        <div><h3>${freqMedia === null ? "—" : freqMedia + "%"}</h3><span>Frequência Média calculada</span></div>
     </div>
     <div class="card-info">
         <i class="fa-solid fa-triangle-exclamation"></i>
@@ -39,10 +48,10 @@ document.getElementById("cardsRelatorio").innerHTML = `
 new Chart(document.getElementById("graficoDistribuicao"), {
     type: "doughnut",
     data: {
-        labels: ["Baixa Necessidade", "Necessidade Moderada", "Alta Necessidade"],
+        labels: ["Baixa Necessidade", "Necessidade Moderada", "Alta Necessidade", "Pendente de dados"],
         datasets: [{
-            data: [verde, amarelo, vermelho],
-            backgroundColor: ["#14B8A6", "#F59E0B", "#EF4444"],
+            data: [verde, amarelo, vermelho, pendentes],
+            backgroundColor: ["#14B8A6", "#F59E0B", "#EF4444", "#94A3B8"],
             borderWidth: 0
         }]
     },
@@ -52,15 +61,18 @@ new Chart(document.getElementById("graficoDistribuicao"), {
     }
 });
 
-// IPA por turma
+// IPA por turma (somente resultados completos)
 const turmas = {};
 alunos.forEach(a => {
     if (!turmas[a.turma]) turmas[a.turma] = { n: 0, s: 0 };
-    turmas[a.turma].n++;
-    turmas[a.turma].s += a.ipa;
+    const ipa = calcDe(a).ipa;
+    if (IPA.ehNumero(ipa)) {
+        turmas[a.turma].n++;
+        turmas[a.turma].s += ipa;
+    }
 });
 const nomesTurmas = Object.keys(turmas);
-const ipaTurmas = nomesTurmas.map(t => Math.round(turmas[t].s / turmas[t].n));
+const ipaTurmas = nomesTurmas.map(t => turmas[t].n ? Number((turmas[t].s / turmas[t].n).toFixed(2)) : null);
 
 new Chart(document.getElementById("graficoTurmas"), {
     type: "bar",
@@ -81,13 +93,15 @@ new Chart(document.getElementById("graficoTurmas"), {
     }
 });
 
-// Desempenho por disciplina (média geral)
+// Desempenho por disciplina (média calculada sobre notas válidas)
 const disciplinas = {};
 alunos.forEach(a => {
-    Object.entries(a.notas).forEach(([d, n]) => {
-        const mediaDisc = (Array.isArray(n) ? n : [n]).reduce((s, v) => s + v, 0) / (Array.isArray(n) ? n.length : 1);
+    const notas = IPA.notasPorDisciplina(a);
+    Object.keys(notas).forEach(d => {
+        const media = IPA.media(notas[d]);
+        if (media === null) return;
         if (!disciplinas[d]) disciplinas[d] = { s: 0, n: 0 };
-        disciplinas[d].s += mediaDisc;
+        disciplinas[d].s += media;
         disciplinas[d].n++;
     });
 });

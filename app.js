@@ -19,6 +19,8 @@ const App = {
 
     _navProfessor: [
         { key: "notas", href: "professor.html", icon: "fa-pen-to-square", label: "Lançar Notas" },
+        { key: "frequencia", href: "professor.html#frequencia", icon: "fa-calendar-check", label: "Frequência" },
+        { key: "atividades", href: "professor.html#atividades", icon: "fa-list-check", label: "Atividades" },
         { key: "configuracoes", href: "configuracoes.html", icon: "fa-gear", label: "Configurações" }
     ],
 

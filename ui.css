@@ -658,3 +658,107 @@ echo "CREATED"
     object-fit:cover;
     border:2px solid rgba(255,255,255,.3);
 }
+
+/* ---------- IPA DINÂMICO (painel de indicadores) ---------- */
+.ipa-valor-grande{
+    font-size:24px;
+    font-weight:800;
+    color:#0F172A;
+    margin:10px 0 16px;
+}
+[data-theme="dark"] .ipa-valor-grande{ color:#F8FAFC; }
+.ipa-indicadores{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    gap:14px;
+    margin:12px 0 18px;
+}
+.ipa-indicador{
+    background:#F8FAFC;
+    border:1px solid #E2E8F0;
+    border-radius:12px;
+    padding:14px;
+}
+[data-theme="dark"] .ipa-indicador{
+    background:#0F172A;
+    border-color:#334155;
+}
+.ipa-indicador-topo{
+    display:flex;
+    justify-content:space-between;
+    gap:8px;
+    font-size:13px;
+    margin-bottom:8px;
+}
+.ipa-indicador small{
+    display:block;
+    color:#64748b;
+    font-size:11px;
+    margin-top:6px;
+}
+.ipa-aviso{
+    font-size:13px;
+    font-weight:600;
+    padding:10px 12px;
+    border-radius:8px;
+    background:#F1F5F9;
+    color:#475569;
+}
+.ipa-aviso.green{ background:#D1FAE5; color:#065F46; }
+.ipa-aviso.yellow{ background:#FEF3C7; color:#92400E; }
+.ipa-aviso.red{ background:#FEE2E2; color:#991B1B; }
+.ipa-aviso.gray{ background:#E2E8F0; color:#475569; }
+.ipa-tag-demo{
+    display:inline-block;
+    font-size:11px;
+    font-weight:700;
+    padding:2px 8px;
+    border-radius:999px;
+    background:#EDE9FE;
+    color:#5B21B6;
+}
+.ipa-atividade{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    border:1px solid #E2E8F0;
+    border-radius:12px;
+    padding:14px;
+    margin-bottom:10px;
+}
+[data-theme="dark"] .ipa-atividade{ border-color:#334155; }
+.ipa-atividade p{ font-size:13px; color:#64748b; margin:4px 0; }
+.ipa-atividade small{ font-size:12px; color:#64748b; }
+.ipa-entregas{
+    border-top:1px dashed #CBD5E1;
+    padding-top:16px;
+}
+.btn-editar-freq{
+    background:none;
+    border:none;
+    color:#2563EB;
+    cursor:pointer;
+}
+.status.gray,
+.status-pill.gray,
+.status-text.gray{
+    background:#E2E8F0;
+    color:#475569;
+}
+.barra{
+    width:100%;
+    height:8px;
+    background:#E2E8F0;
+    border-radius:999px;
+    overflow:hidden;
+}
+.barra-preench{
+    display:block;
+    height:100%;
+    background:#94A3B8;
+    border-radius:999px;
+}
+.barra-preench.green{ background:#14B8A6; }
+.barra-preench.yellow{ background:#F59E0B; }
+.barra-preench.red{ background:#EF4444; }

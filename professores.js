@@ -28,8 +28,15 @@ function renderProfessores() {
                     return `<label style="font-size:14px;"><input type="checkbox" data-disc="${d}" ${checked}> ${d}</label>`;
                 }).join("")}
             </form>
+            <h3 style="margin-top:16px;">Turmas autorizadas</h3>
+            <form class="form-turmas" data-id="${p.id}" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;">
+                ${getTurmas().map(t => {
+                    const checked = (p.turmas || []).includes(t) ? "checked" : "";
+                    return `<label style="font-size:14px;"><input type="checkbox" data-turma="${t}" ${checked}> ${t}</label>`;
+                }).join("") || '<small style="color:#64748b;">Nenhuma turma cadastrada ainda.</small>'}
+            </form>
             <div style="margin-top:12px;display:flex;gap:8px;">
-                <button class="btn btn-salvar" data-id="${p.id}" style="width:auto;">Salvar disciplinas</button>
+                <button class="btn btn-salvar" data-id="${p.id}" style="width:auto;">Salvar disciplinas e turmas</button>
                 <button class="btn btn-remover" data-id="${p.id}" style="width:auto;background:#EF4444;">Remover</button>
             </div>
         </section>
@@ -41,8 +48,12 @@ function renderProfessores() {
             const form = container.querySelector(`.form-prof[data-id="${id}"]`);
             const discs = Array.from(form.querySelectorAll("input[type=checkbox]:checked"))
                 .map(i => i.dataset.disc);
-            atualizarProfessor(id, { disciplinas: discs });
-            alert("Disciplinas atualizadas.");
+            const formTurmas = container.querySelector(`.form-turmas[data-id="${id}"]`);
+            const turmas = formTurmas
+                ? Array.from(formTurmas.querySelectorAll("input[type=checkbox]:checked")).map(i => i.dataset.turma)
+                : [];
+            atualizarProfessor(id, { disciplinas: discs, turmas });
+            alert("Disciplinas e turmas atualizadas.");
         });
     });
 

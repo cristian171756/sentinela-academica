@@ -1,18 +1,29 @@
 // ==========================================
 // SENTINELA ACADÊMICA
-// Dashboard
+// Dashboard com indicadores calculados pelo IPA
 // ==========================================
 
 protegerPagina("coordenacao");
 App.initSidebar("dashboard");
 
 const alunos = getAlunos();
+const dadosDashboard = carregarDados();
+const calculos = new Map(alunos.map(a => [String(a.id), IPA.calcularPara(a, dadosDashboard)]));
+
+function calcDe(aluno) {
+    return calculos.get(String(aluno.id));
+}
 
 // Resumo geral
 const total = alunos.length;
 const turmasUnicas = new Set(alunos.map(a => a.turma)).size;
-const emAtencao = alunos.filter(a => a.ipa >= 70).length;
-const freqMedia = total > 0 ? Math.round(alunos.reduce((s, a) => s + a.frequencia, 0) / total) : 0;
+const emAtencao = alunos.filter(a => {
+    const c = calcDe(a);
+    return c.completo && c.classificacao.chave === "alta";
+}).length;
+const pendentes = alunos.filter(a => !calcDe(a).completo).length;
+const frequencias = alunos.map(a => calcDe(a).indicadores.F).filter(IPA.ehNumero);
+const freqMedia = frequencias.length ? Math.round(frequencias.reduce((s, v) => s + v, 0) / frequencias.length) : null;
 
 document.getElementById("cardsResumo").innerHTML = `
     <div class="card-info">
@@ -29,62 +40,88 @@ document.getElementById("cardsResumo").innerHTML = `
     </div>
     <div class="card-info">
         <i class="fa-solid fa-chart-line"></i>
-        <div><h3>${freqMedia}%</h3><span>Frequência Média</span></div>
+        <div><h3>${freqMedia === null ? "—" : freqMedia + "%"}</h3><span>Frequência Média calculada</span></div>
     </div>
 `;
 
+// Detalhe por indicador: apenas registros reais disponíveis entram na média.
+const painelIndicadores = document.getElementById("conteudoIndicadoresCoordenacao");
+if (painelIndicadores) {
+    painelIndicadores.innerHTML = `
+        <div class="ipa-indicadores">
+            ${["F", "D", "A", "E"].map(chave => {
+                const valores = alunos.map(a => calcDe(a).indicadores[chave]).filter(IPA.ehNumero);
+                const medio = valores.length ? IPA.arredondar2(IPA.media(valores)) : null;
+                const semRegistro = alunos.length - valores.length;
+                return `
+                    <div class="ipa-indicador">
+                        <div class="ipa-indicador-topo">
+                            <span>${IPA.ROTULOS[chave]}</span>
+                            <strong>${IPA.ehNumero(medio) ? IPA.formatarNumero(medio) + "/100" : "sem dados"}</strong>
+                        </div>
+                        <div class="barra"><span class="barra-preench ${IPA.ehNumero(medio) ? "green" : ""}" style="width:${IPA.ehNumero(medio) ? medio : 0}%"></span></div>
+                        <small>Peso ${Math.round(IPA.PESOS[chave] * 100)}% • ${semRegistro} aluno(s) sem registro</small>
+                    </div>
+                `;
+            }).join("")}
+        </div>
+        <p style="font-size:13px;color:#64748b;margin-top:12px;">
+            Os pesos, o cálculo e a classificação são definidos em <code>ipa.js</code>, fonte única de verdade.
+        </p>
+    `;
+}
+
 // Alunos em alta necessidade de acompanhamento (IPA >= 70), ordenados
 const atencao = alunos
-    .filter(a => a.ipa >= 70)
-    .sort((a, b) => b.ipa - a.ipa);
+    .filter(a => {
+        const c = calcDe(a);
+        return c.completo && c.classificacao.chave === "alta";
+    })
+    .sort((a, b) => calcDe(b).ipa - calcDe(a).ipa);
 
 document.getElementById("listaAtencao").innerHTML = atencao.map(a => {
-    const st = statusIPA(a.ipa);
+    const c = calcDe(a);
     return `
         <li>
             <div>
                 <strong>${a.nome}</strong>
                 <span class="sub">${a.turma}</span>
             </div>
-            <span class="status ${st.classe}">${a.ipa}</span>
+            <span class="status ${c.classificacao.classe}">${IPA.formatarIPA(c.ipa)}</span>
         </li>
     `;
-}).join("") || `<li class="vazio">Nenhum aluno em alerta. 🎉</li>`;
+}).join("") || `<li class="vazio">${pendentes > 0
+    ? `${pendentes} aluno(s) aguardam registros para ter o IPA classificado.`
+    : "Nenhum aluno em alerta. 🎉"}</li>`;
 
-// Gráfico de evolução (média dos alunos por mês)
-const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun"];
-const ipaMedio = meses.map((_, i) =>
-    total > 0 ? Math.round(alunos.reduce((s, a) => s + (a.historicoIPA[i] || 0), 0) / total) : 0
-);
-const mediaMedio = meses.map((_, i) =>
-    total > 0 ? (alunos.reduce((s, a) => s + (a.historicoMedia[i] || 0), 0) / total).toFixed(1) : "0.0"
-);
-
-const ctx = document.getElementById("grafico");
-new Chart(ctx, {
+// Gráfico de evolução (IPA e média calculados)
+const serieGeral = IPA.serieHistoricoAgregada(alunos);
+new Chart(document.getElementById("grafico"), {
     type: "line",
     data: {
-        labels: meses,
+        labels: serieGeral.labels,
         datasets: [
             {
                 label: "IPA Médio",
-                data: ipaMedio,
+                data: serieGeral.ipa,
                 borderColor: "#2563EB",
                 backgroundColor: "rgba(37,99,235,.12)",
                 fill: true,
                 tension: .4,
                 pointRadius: 4,
-                pointBackgroundColor: "#2563EB"
+                pointBackgroundColor: "#2563EB",
+                spanGaps: false
             },
             {
                 label: "Média Geral",
-                data: mediaMedio,
+                data: serieGeral.media,
                 borderColor: "#14B8A6",
                 backgroundColor: "rgba(20,184,210,.10)",
                 fill: true,
                 tension: .4,
                 pointRadius: 4,
-                pointBackgroundColor: "#14B8A6"
+                pointBackgroundColor: "#14B8A6",
+                spanGaps: false
             }
         ]
     },
@@ -119,15 +156,19 @@ let chartComparacao = null;
 function getDadosGrafico(tipo) {
     const turmas = {};
     alunos.forEach(a => {
+        const c = calcDe(a);
+        const media = c.mediaGeral;
+        const ipa = c.ipa;
+        const freq = c.indicadores.F;
         if (!turmas[a.turma]) turmas[a.turma] = { n: 0, somaMedia: 0, somaIPA: 0, somaFreq: 0, notasBaixas: 0, boasNotas: 0, pendencias: 0 };
         const t = turmas[a.turma];
         t.n++;
-        t.somaMedia += a.media;
-        t.somaIPA += a.ipa;
-        t.somaFreq += a.frequencia;
-        if (a.media < 5) t.notasBaixas++;
-        if (a.media >= 7) t.boasNotas++;
-        if (a.ipa >= 40) t.pendencias++;
+        t.somaMedia += media === null ? 0 : media;
+        t.somaIPA += ipa === null ? 0 : ipa;
+        t.somaFreq += freq === null ? 0 : freq;
+        if (media !== null && media < 5) t.notasBaixas++;
+        if (media !== null && media >= 7) t.boasNotas++;
+        if (c.classificacao.chave === "moderada" || c.classificacao.chave === "alta") t.pendencias++;
     });
 
     const nomesTurmas = Object.keys(turmas);
@@ -141,13 +182,15 @@ function getDadosGrafico(tipo) {
             };
 
         case "frequencia": {
-            const faixas = ["< 60%", "60-70%", "70-80%", "80-90%", "90-100%"];
-            const contagem = [0, 0, 0, 0, 0];
+            const faixas = ["< 60%", "60-70%", "70-80%", "80-90%", "90-100%", "sem dados"];
+            const contagem = [0, 0, 0, 0, 0, 0];
             alunos.forEach(a => {
-                if (a.frequencia < 60) contagem[0]++;
-                else if (a.frequencia < 70) contagem[1]++;
-                else if (a.frequencia < 80) contagem[2]++;
-                else if (a.frequencia < 90) contagem[3]++;
+                const f = calcDe(a).indicadores.F;
+                if (f === null) contagem[5]++;
+                else if (f < 60) contagem[0]++;
+                else if (f < 70) contagem[1]++;
+                else if (f < 80) contagem[2]++;
+                else if (f < 90) contagem[3]++;
                 else contagem[4]++;
             });
             return { labels: faixas, data: contagem, cor: "#14B8A6" };
@@ -156,8 +199,10 @@ function getDadosGrafico(tipo) {
         case "notasBaixas": {
             let baixas = 0, medias = 0, boas = 0;
             alunos.forEach(a => {
-                if (a.media < 5) baixas++;
-                else if (a.media < 7) medias++;
+                const m = calcDe(a).mediaGeral;
+                if (m === null) return;
+                if (m < 5) baixas++;
+                else if (m < 7) medias++;
                 else boas++;
             });
             return {
@@ -183,10 +228,12 @@ function getDadosGrafico(tipo) {
         case "desempenhoDisciplina": {
             const disciplinas = {};
             alunos.forEach(a => {
-                Object.entries(a.notas).forEach(([d, n]) => {
-                    const media = (Array.isArray(n) ? n : [n]).reduce((s, v) => s + v, 0) / (Array.isArray(n) ? n.length : 1);
+                const notas = IPA.notasPorDisciplina(a);
+                Object.keys(notas).forEach(d => {
+                    const m = IPA.media(notas[d]);
+                    if (m === null) return;
                     if (!disciplinas[d]) disciplinas[d] = { s: 0, n: 0 };
-                    disciplinas[d].s += media;
+                    disciplinas[d].s += m;
                     disciplinas[d].n++;
                 });
             });
@@ -198,12 +245,14 @@ function getDadosGrafico(tipo) {
             };
         }
 
-        case "evolucaoIPA": {
-            const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun"];
-            const ipaMedio = meses.map((_, i) => total > 0 ? Math.round(alunos.reduce((s, a) => s + (a.historicoIPA[i] || 0), 0) / total) : 0);
-            const mediaMedio = meses.map((_, i) => total > 0 ? parseFloat((alunos.reduce((s, a) => s + (a.historicoMedia[i] || 0), 0) / total).toFixed(1)) : 0);
-            return { labels: meses, data: ipaMedio, data2: mediaMedio, cor: "#2563EB", cor2: "#14B8A6" };
-        }
+        case "evolucaoIPA":
+            return {
+                labels: serieGeral.labels,
+                data: serieGeral.ipa,
+                data2: serieGeral.media,
+                cor: "#2563EB",
+                cor2: "#14B8A6"
+            };
 
         default:
             return { labels: [], data: [], cor: "#2563EB" };
@@ -229,7 +278,8 @@ function criarGrafico(canvasId, tipo) {
             fill: true,
             tension: .4,
             pointRadius: 4,
-            pointBackgroundColor: dados.cor
+            pointBackgroundColor: dados.cor,
+            spanGaps: false
         });
         datasets.push({
             label: "Média Geral",
@@ -239,7 +289,8 @@ function criarGrafico(canvasId, tipo) {
             fill: true,
             tension: .4,
             pointRadius: 4,
-            pointBackgroundColor: dados.cor2
+            pointBackgroundColor: dados.cor2,
+            spanGaps: false
         });
     } else {
         datasets.push({

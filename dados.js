@@ -4,12 +4,20 @@
 // ==========================================
 
 const STORAGE_KEY = "sentinela_dados_v4";
+const BACKUP_KEY = "sentinela_dados_v4_backup";
 const SESSION_KEY = "sentinela_sessao_v1";
+const SCHEMA_VERSAO = 6;
 
 const COORDENADOR = {
     email: "coordenador@abel.edu.br",
     senha: "123456"
 };
+
+// Vínculos demonstrativos explícitos. Nunca são inferidos das notas dos alunos:
+// a coordenação ajusta disciplinas e turmas na tela "Professores".
+const TURMAS_DEMONSTRATIVAS = [
+    "Informática II", "3º Ano A", "2º Ano B", "Informática I", "1º Ano A", "2º Ano A"
+];
 
 // Dados base usados para inicializar/resetar o sistema
 const DADOS_BASE = {
@@ -39,6 +47,7 @@ const DADOS_BASE = {
                 "nome": "Cintia",
                 "email": "cintia@abel.edu.br",
                 "senha": "1234",
+                "turmas": ["Informática II", "3º Ano A", "2º Ano B", "Informática I", "1º Ano A", "2º Ano A"],
                 "disciplinas": [
                         "Língua Portuguesa"
                 ]
@@ -48,6 +57,7 @@ const DADOS_BASE = {
                 "nome": "Adalberto",
                 "email": "adalberto@abel.edu.br",
                 "senha": "1234",
+                "turmas": ["Informática II", "3º Ano A", "2º Ano B", "Informática I", "1º Ano A", "2º Ano A"],
                 "disciplinas": [
                         "Língua Portuguesa"
                 ]
@@ -57,6 +67,7 @@ const DADOS_BASE = {
                 "nome": "Pratini",
                 "email": "pratini@abel.edu.br",
                 "senha": "1234",
+                "turmas": ["Informática II", "3º Ano A", "2º Ano B", "Informática I", "1º Ano A", "2º Ano A"],
                 "disciplinas": [
                         "Biologia"
                 ]
@@ -66,6 +77,7 @@ const DADOS_BASE = {
                 "nome": "Talitha",
                 "email": "talitha@abel.edu.br",
                 "senha": "1234",
+                "turmas": ["Informática II", "3º Ano A", "2º Ano B", "Informática I", "1º Ano A", "2º Ano A"],
                 "disciplinas": [
                         "Língua Espanhola"
                 ]
@@ -75,6 +87,7 @@ const DADOS_BASE = {
                 "nome": "Mansinho",
                 "email": "mansinho@abel.edu.br",
                 "senha": "1234",
+                "turmas": ["Informática II", "3º Ano A", "2º Ano B", "Informática I", "1º Ano A", "2º Ano A"],
                 "disciplinas": [
                         "Matemática"
                 ]
@@ -84,6 +97,7 @@ const DADOS_BASE = {
                 "nome": "Márcio",
                 "email": "marcio@abel.edu.br",
                 "senha": "1234",
+                "turmas": ["Informática II", "3º Ano A", "2º Ano B", "Informática I", "1º Ano A", "2º Ano A"],
                 "disciplinas": [
                         "Matemática"
                 ]
@@ -93,6 +107,7 @@ const DADOS_BASE = {
                 "nome": "Michel",
                 "email": "michel@abel.edu.br",
                 "senha": "1234",
+                "turmas": ["Informática II", "3º Ano A", "2º Ano B", "Informática I", "1º Ano A", "2º Ano A"],
                 "disciplinas": [
                         "Banco de Dados",
                         "Empreendedorismo",
@@ -107,6 +122,7 @@ const DADOS_BASE = {
                 "nome": "Karla",
                 "email": "karla@abel.edu.br",
                 "senha": "1234",
+                "turmas": ["Informática II", "3º Ano A", "2º Ano B", "Informática I", "1º Ano A", "2º Ano A"],
                 "disciplinas": [
                         "Banco de Dados",
                         "Empreendedorismo",
@@ -121,6 +137,7 @@ const DADOS_BASE = {
                 "nome": "Marcondes",
                 "email": "marcondes@abel.edu.br",
                 "senha": "1234",
+                "turmas": ["Informática II", "3º Ano A", "2º Ano B", "Informática I", "1º Ano A", "2º Ano A"],
                 "disciplinas": [
                         "Arte"
                 ]
@@ -130,6 +147,7 @@ const DADOS_BASE = {
                 "nome": "Giselly",
                 "email": "giselly@abel.edu.br",
                 "senha": "1234",
+                "turmas": ["Informática II", "3º Ano A", "2º Ano B", "Informática I", "1º Ano A", "2º Ano A"],
                 "disciplinas": [
                         "Educação Física"
                 ]
@@ -139,6 +157,7 @@ const DADOS_BASE = {
                 "nome": "Regina",
                 "email": "regina@abel.edu.br",
                 "senha": "1234",
+                "turmas": ["Informática II", "3º Ano A", "2º Ano B", "Informática I", "1º Ano A", "2º Ano A"],
                 "disciplinas": [
                         "Física"
                 ]
@@ -148,6 +167,7 @@ const DADOS_BASE = {
                 "nome": "Zé Roberto",
                 "email": "zeroberto@abel.edu.br",
                 "senha": "1234",
+                "turmas": ["Informática II", "3º Ano A", "2º Ano B", "Informática I", "1º Ano A", "2º Ano A"],
                 "disciplinas": [
                         "História"
                 ]
@@ -157,6 +177,7 @@ const DADOS_BASE = {
                 "nome": "Gaby",
                 "email": "gaby@abel.edu.br",
                 "senha": "1234",
+                "turmas": ["Informática II", "3º Ano A", "2º Ano B", "Informática I", "1º Ano A", "2º Ano A"],
                 "disciplinas": [
                         "Língua Inglesa"
                 ]
@@ -166,6 +187,7 @@ const DADOS_BASE = {
                 "nome": "Laninha",
                 "email": "laninha@abel.edu.br",
                 "senha": "1234",
+                "turmas": ["Informática II", "3º Ano A", "2º Ano B", "Informática I", "1º Ano A", "2º Ano A"],
                 "disciplinas": [
                         "Geografia"
                 ]
@@ -175,6 +197,7 @@ const DADOS_BASE = {
                 "nome": "Tomaz",
                 "email": "tomaz@abel.edu.br",
                 "senha": "1234",
+                "turmas": ["Informática II", "3º Ano A", "2º Ano B", "Informática I", "1º Ano A", "2º Ano A"],
                 "disciplinas": [
                         "Química"
                 ]
@@ -184,6 +207,7 @@ const DADOS_BASE = {
                 "nome": "Antunes",
                 "email": "antunes@abel.edu.br",
                 "senha": "1234",
+                "turmas": ["Informática II", "3º Ano A", "2º Ano B", "Informática I", "1º Ano A", "2º Ano A"],
                 "disciplinas": [
                         "Filosofia"
                 ]
@@ -193,6 +217,7 @@ const DADOS_BASE = {
                 "nome": "Walter",
                 "email": "walter@abel.edu.br",
                 "senha": "1234",
+                "turmas": ["Informática II", "3º Ano A", "2º Ano B", "Informática I", "1º Ano A", "2º Ano A"],
                 "disciplinas": [
                         "Sociologia do Trabalho"
                 ]
@@ -2490,15 +2515,130 @@ const DADOS_BASE = {
 
 // ---------- Persistência ----------
 
+function proximoIdRegistro(lista) {
+    return (lista || []).reduce((max, item) => Math.max(max, Number(item && item.id) || 0), 0) + 1;
+}
+
+// Cópia integral dos dados originais, gravada uma única vez antes da migração.
+// Nunca é sobrescrita nem restaurada automaticamente.
+function garantirBackup(dados) {
+    try {
+        if (!localStorage.getItem(BACKUP_KEY) && dados) {
+            localStorage.setItem(BACKUP_KEY, JSON.stringify(dados));
+        }
+    } catch (e) {
+        console.warn("Não foi possível gravar o backup dos dados originais", e);
+    }
+}
+
+// O rótulo "demonstrativo" acompanha os registros, não o aluno para sempre.
+// Quando todos os registros são substituídos por lançamentos reais, ele some.
+function avaliarDadosDemonstrativos(aluno) {
+    if (!aluno) return false;
+    const notas = Array.isArray(aluno.registrosNotas) ? aluno.registrosNotas : [];
+    const freq = Array.isArray(aluno.registrosFrequencia) ? aluno.registrosFrequencia : [];
+    return notas.some(r => r && r.origem === "demonstracao") ||
+        freq.some(r => r && r.origem === "demonstracao");
+}
+
+// v6: vínculos explícitos de professor/turma, identificação da aula e
+// contexto (turma/disciplina/professor) dos registros já existentes.
+function migrarV6(dados) {
+    (dados.professores || []).forEach(prof => {
+        if (Array.isArray(prof.turmas) && prof.turmas.length > 0) return;
+        const modelo = (DADOS_BASE.professores || []).find(p =>
+            String(p.email || "").toLowerCase() === String(prof.email || "").toLowerCase());
+        prof.turmas = modelo && Array.isArray(modelo.turmas) ? modelo.turmas.slice() : [];
+    });
+
+    (dados.alunos || []).forEach(aluno => {
+        (aluno.registrosNotas || []).forEach(r => {
+            if (!r.turma) r.turma = aluno.turma || "Não definida";
+        });
+        (aluno.registrosFrequencia || []).forEach(r => {
+            if (!r.aulaId) r.aulaId = `${r.disciplina}|${r.data}`;
+            if (!r.turma) r.turma = aluno.turma || "Não definida";
+        });
+        aluno.dadosDemonstrativos = avaliarDadosDemonstrativos(aluno);
+    });
+
+    (dados.entregas || []).forEach(entrega => {
+        const atividade = (dados.atividades || []).find(a => String(a.id) === String(entrega.atividadeId));
+        const aluno = (dados.alunos || []).find(a => String(a.id) === String(entrega.alunoId));
+        if (atividade && !entrega.disciplina) entrega.disciplina = atividade.disciplina;
+        if (atividade && !entrega.professorId) entrega.professorId = atividade.professorId;
+        if (!entrega.turma) entrega.turma = (atividade && atividade.turma) || (aluno && aluno.turma) || "Não definida";
+    });
+
+    dados.schemaVersao = 6;
+}
+
+// Migração idempotente: transforma notas demonstrativas em registros de
+// desempenho rastreáveis, sem apagar os campos originais nem o histórico antigo.
+function migrarDados(dados) {
+    if (!dados || typeof dados !== "object") return dados;
+    const versao = Number(dados.schemaVersao || 0);
+    if (versao >= SCHEMA_VERSAO) return dados;
+
+    garantirBackup(dados);
+
+    if (!Array.isArray(dados.atividades)) dados.atividades = [];
+    if (!Array.isArray(dados.entregas)) dados.entregas = [];
+    if (!Array.isArray(dados.alunos)) dados.alunos = [];
+
+    if (versao < 5) {
+        dados.alunos.forEach(aluno => {
+            aluno.dadosDemonstrativos = true;
+            if (aluno.ipaLegado === undefined) aluno.ipaLegado = aluno.ipa;
+            if (!Array.isArray(aluno.registrosNotas)) aluno.registrosNotas = [];
+            if (!Array.isArray(aluno.registrosFrequencia)) aluno.registrosFrequencia = [];
+            if (!Array.isArray(aluno.historicoIPACalculado)) aluno.historicoIPACalculado = [];
+
+            const notas = (aluno.notas && typeof aluno.notas === "object") ? aluno.notas : {};
+            Object.keys(notas).forEach(disciplina => {
+                const bruto = notas[disciplina];
+                const valores = Array.isArray(bruto) ? bruto : [bruto];
+                valores.forEach((valor, indice) => {
+                    const bimestre = indice + 1;
+                    if (bimestre > 4 || typeof valor !== "number" || !Number.isFinite(valor) || valor < 0 || valor > 10) return;
+                    const jaExiste = aluno.registrosNotas.some(r => r.disciplina === disciplina && r.bimestre === bimestre);
+                    if (jaExiste) return;
+                    aluno.registrosNotas.push({
+                        id: proximoIdRegistro(aluno.registrosNotas),
+                        disciplina,
+                        bimestre,
+                        valor,
+                        origem: "demonstracao",
+                        criadoEm: new Date().toISOString(),
+                        atualizadoEm: new Date().toISOString()
+                    });
+                });
+            });
+        });
+        dados.schemaVersao = 5;
+    }
+
+    if (versao < 6) migrarV6(dados);
+
+    dados.migracao = {
+        versao: SCHEMA_VERSAO,
+        migradoEm: new Date().toISOString(),
+        origem: "demonstracao",
+        observacao: "Notas demonstrativas convertidas em registros; vínculos de professor/turma explícitos e aulas identificadas."
+    };
+    salvarDados(dados);
+    return dados;
+}
+
 function carregarDados() {
     try {
         const salvo = localStorage.getItem(STORAGE_KEY);
-        if (salvo) return JSON.parse(salvo);
+        if (salvo) return migrarDados(JSON.parse(salvo));
     } catch (e) {
         console.warn("Falha ao ler dados do localStorage", e);
     }
     const base = structuredClone(DADOS_BASE);
-    salvarDados(base);
+    migrarDados(base);
     return base;
 }
 
@@ -2511,17 +2651,39 @@ function salvarDados(dados) {
 }
 
 function resetarDados() {
+    // Preserva os dados atuais antes de qualquer restauração explícita.
+    garantirBackup(carregarDados());
     const base = structuredClone(DADOS_BASE);
-    salvarDados(base);
+    migrarDados(base);
     return base;
+}
+
+// Recuperação explícita (somente chamada pela coordenação): restaura o backup
+// original gravado antes da migração. Antes de trocar, guarda o estado atual
+// em outro local para não perder registros lançados após a migração.
+function restaurarBackupOriginal() {
+    const original = localStorage.getItem(BACKUP_KEY);
+    if (!original) throw new Error("Não há backup original gravado neste navegador.");
+    const atual = localStorage.getItem(STORAGE_KEY);
+    if (atual) localStorage.setItem("sentinela_dados_v4_antes_restauracao", atual);
+
+    const dados = JSON.parse(original);
+    salvarDados(dados);
+    migrarDados(dados);
+    if (typeof IPA !== "undefined" && IPA.recalcularTodos) {
+        IPA.recalcularTodos("Dados originais recuperados pela coordenação");
+    }
+    return carregarDados();
 }
 
 // ---------- Helpers de domínio ----------
 
 function statusIPA(ipa) {
-    if (ipa >= 70) return { classe: "red", texto: "Alta necessidade de acompanhamento" };
-    if (ipa >= 40) return { classe: "yellow", texto: "Necessidade moderada" };
-    return { classe: "green", texto: "Baixa necessidade de acompanhamento" };
+    // Nenhuma regra de classificação é duplicada fora do módulo central.
+    if (typeof IPA === "undefined" || !IPA.classificar) {
+        throw new Error("Módulo IPA indisponível: carregue ipa.js antes de classificar.");
+    }
+    return IPA.classificar(ipa);
 }
 
 function getAlunos() {
@@ -2566,7 +2728,8 @@ function adicionarProfessor(campos) {
         nome: campos.nome.trim(),
         email,
         senha: campos.senha,
-        disciplinas: Array.isArray(campos.disciplinas) ? campos.disciplinas : []
+        disciplinas: Array.isArray(campos.disciplinas) ? campos.disciplinas : [],
+        turmas: Array.isArray(campos.turmas) ? campos.turmas : []
     };
     dados.professores.push(professor);
     salvarDados(dados);
@@ -2594,7 +2757,15 @@ function atualizarAluno(id, campos) {
     const dados = carregarDados();
     const aluno = dados.alunos.find(a => String(a.id) === String(id));
     if (aluno) {
-        Object.assign(aluno, campos);
+        // IPA/média/frequência nunca são campos editáveis: vêm do cálculo.
+        const protegidos = ["ipa", "media", "frequencia", "ipaCompleto", "ipaClassificacao",
+            "indicadoresIPA", "dadosFaltantes", "ipaAtualizadoEm", "historicoIPACalculado"];
+        Object.keys(campos).forEach(chave => {
+            if (!protegidos.includes(chave)) aluno[chave] = campos[chave];
+        });
+        if (typeof IPA !== "undefined" && IPA.recalcular) {
+            IPA.recalcular(id, "Dados cadastrais do aluno atualizados", dados);
+        }
         salvarDados(dados);
     }
     return aluno;
@@ -2642,34 +2813,10 @@ function proximaMatricula(alunos) {
     return `${base}${String(maxSeq + 1).padStart(3, "0")}`;
 }
 
+// Alunos novos não recebem notas fictícias. Os registros surgem apenas de
+// lançamentos reais feitos pelos professores.
 function notasPadrao(curso) {
-    const bim = [7.0, 7.0, 7.0, 7.0];
-    const base = {
-        "Arte": [...bim],
-        "Biologia": [...bim],
-        "Educação Física": [...bim],
-        "Filosofia": [...bim],
-        "Física": [...bim],
-        "Geografia": [...bim],
-        "História": [...bim],
-        "Língua Espanhola": [...bim],
-        "Língua Inglesa": [...bim],
-        "Língua Portuguesa": [...bim],
-        "Matemática": [...bim],
-        "Metodologia do Trabalho Científico": [...bim],
-        "Projeto de Vida": [...bim],
-        "Química": [...bim],
-        "Sociologia do Trabalho": [...bim]
-    };
-    if (curso === "Informática") {
-        base["Banco de Dados"] = [...bim];
-        base["Empreendedorismo"] = [...bim];
-        base["Fundamentos de Redes de Computadores"] = [...bim];
-        base["Programação Estruturada e Orientada a Objetos"] = [...bim];
-        base["Programação WEB 1"] = [...bim];
-        base["Programação WEB 2"] = [...bim];
-    }
-    return base;
+    return {};
 }
 
 function adicionarAluno(campos) {
@@ -2688,21 +2835,402 @@ function adicionarAluno(campos) {
         turma: campos.turma ? campos.turma.trim() : "Não definida",
         serie: campos.serie || "",
         curso: campos.curso || "Regular",
-        media: 7.0,
-        frequencia: 100,
-        ipa: 20,
+        media: null,
+        frequencia: null,
+        ipa: null,
+        ipaCompleto: false,
+        ipaClassificacao: "IPA pendente de dados",
+        dadosFaltantes: [],
         notas: notasPadrao(campos.curso || "Regular"),
-        historicoIPA: [20, 20, 20, 20, 20, 20],
-        historicoMedia: [7.0, 7.0, 7.0, 7.0, 7.0, 7.0],
-        historicoFrequencia: [100, 100, 100, 100, 100, 100],
-        observacoes: "Conta criada pelo estudante. Acompanhamento inicial em andamento."
+        registrosNotas: [],
+        registrosFrequencia: [],
+        historicoIPACalculado: [],
+        historicoIPA: [],
+        historicoMedia: [],
+        historicoFrequencia: [],
+        observacoes: "Conta criada pelo estudante. Acompanhamento inicial em andamento.",
+        dadosDemonstrativos: false
     };
 
     if (campos.email) aluno.email = campos.email.trim();
 
     alunos.push(aluno);
+    if (typeof IPA !== "undefined" && IPA.recalcular) {
+        IPA.recalcular(id, "Conta criada — aguardando registros acadêmicos", dados);
+    }
     salvarDados(dados);
     return aluno;
+}
+
+// ---------- Registros acadêmicos (escrita validada + recálculo automático) ----------
+
+function dataValida(valor) {
+    if (typeof IPA !== "undefined" && IPA.dataISOValida) return IPA.dataISOValida(valor);
+    return typeof valor === "string" && /^\d{4}-\d{2}-\d{2}$/.test(valor);
+}
+
+// Autorização somente pelo vínculo explícito cadastrado pela coordenação.
+// Nunca se infere turma a partir de notas demonstrativas ou do histórico.
+function turmasAutorizadasProfessor(prof) {
+    if (!prof || !Array.isArray(prof.turmas)) return [];
+    return prof.turmas.slice();
+}
+
+function professorAutorizado(prof, disciplina, turma) {
+    if (!prof) return false;
+    const disciplinas = Array.isArray(prof.disciplinas) ? prof.disciplinas : [];
+    if (!disciplinas.includes(disciplina)) return false;
+    const turmas = turmasAutorizadasProfessor(prof);
+    return turmas.length > 0 && turmas.includes(turma);
+}
+
+function registrarNota(campos) {
+    const dados = carregarDados();
+    const aluno = dados.alunos.find(a => String(a.id) === String(campos.alunoId));
+    const prof = getProfessorPorId(campos.professorId);
+    if (!aluno) throw new Error("Aluno não encontrado.");
+    if (!prof) throw new Error("Professor não encontrado.");
+
+    const disciplina = String(campos.disciplina || "").trim();
+    const bimestre = Number(campos.bimestre);
+    const valor = Number(campos.valor);
+    if (!disciplina) throw new Error("Informe a disciplina.");
+    if (!Number.isInteger(bimestre) || bimestre < 1 || bimestre > 4) throw new Error("Informe um bimestre de 1 a 4.");
+    if (!Number.isFinite(valor) || valor < 0 || valor > 10) throw new Error("A nota deve estar entre 0 e 10.");
+    if (!professorAutorizado(prof, disciplina, aluno.turma)) {
+        throw new Error("Você não está autorizado a lançar notas nesta disciplina/turma.");
+    }
+
+    if (!Array.isArray(aluno.registrosNotas)) aluno.registrosNotas = [];
+    const agora = new Date().toISOString();
+    let registro = aluno.registrosNotas.find(r => r.disciplina === disciplina && r.bimestre === bimestre);
+    const eraNovo = !registro;
+    if (!registro) {
+        registro = {
+            id: proximoIdRegistro(aluno.registrosNotas),
+            disciplina,
+            bimestre,
+            origem: "professor",
+            criadoEm: agora
+        };
+        aluno.registrosNotas.push(registro);
+    } else if (registro.origem === "demonstracao") {
+        registro.valorDemonstrativo = registro.valor;
+        registro.substituiuDemonstracao = true;
+        registro.origem = "professor";
+    }
+    registro.valor = valor;
+    registro.professorId = prof.id;
+    registro.atualizadoEm = agora;
+    registro.turma = aluno.turma || registro.turma || "Não definida";
+    aluno.dadosDemonstrativos = avaliarDadosDemonstrativos(aluno);
+
+    if (typeof IPA !== "undefined" && IPA.recalcular) {
+        IPA.recalcular(aluno.id, `Nota de ${disciplina} (${bimestre}º bimestre) ${eraNovo ? "lançada" : "alterada"}`, dados);
+    }
+    salvarDados(dados);
+    return registro;
+}
+
+function removerNota(campos) {
+    const dados = carregarDados();
+    const aluno = dados.alunos.find(a => String(a.id) === String(campos.alunoId));
+    const prof = getProfessorPorId(campos.professorId);
+    if (!aluno) throw new Error("Aluno não encontrado.");
+    if (!prof) throw new Error("Professor não encontrado.");
+
+    const registro = (aluno.registrosNotas || []).find(r => String(r.id) === String(campos.registroId));
+    if (!registro) throw new Error("Registro de nota não encontrado.");
+    if (!professorAutorizado(prof, registro.disciplina, registro.turma || aluno.turma)) {
+        throw new Error("Você não está autorizado a remover esta nota.");
+    }
+
+    aluno.registrosNotas = aluno.registrosNotas.filter(r => String(r.id) !== String(registro.id));
+    // A projeção também lê o snapshot legado; limpar a posição evita que a
+    // nota excluída reapareça como demonstrativa.
+    const legado = aluno.notas && aluno.notas[registro.disciplina];
+    if (Array.isArray(legado) && registro.bimestre >= 1 && registro.bimestre <= 4) {
+        legado[registro.bimestre - 1] = null;
+    }
+    aluno.dadosDemonstrativos = avaliarDadosDemonstrativos(aluno);
+
+    if (typeof IPA !== "undefined" && IPA.recalcular) {
+        IPA.recalcular(aluno.id, `Nota de ${registro.disciplina} (${registro.bimestre}º bimestre) removida`, dados);
+    }
+    salvarDados(dados);
+    return true;
+}
+
+function registrarFrequencia(campos) {
+    const dados = carregarDados();
+    const aluno = dados.alunos.find(a => String(a.id) === String(campos.alunoId));
+    const prof = getProfessorPorId(campos.professorId);
+    if (!aluno) throw new Error("Aluno não encontrado.");
+    if (!prof) throw new Error("Professor não encontrado.");
+
+    const disciplina = String(campos.disciplina || "").trim();
+    const data = String(campos.data || "");
+    // Identificador da aula (nº, horário ou código). Registros antigos usam
+    // a combinação disciplina|data, preservada pela migração v6.
+    const aulaId = String(campos.aulaId || "").trim() || `${disciplina}|${data}`;
+    const presenca = campos.presenca === true || campos.presenca === "presente";
+    const explicito = campos.presenca === true || campos.presenca === false ||
+        campos.presenca === "presente" || campos.presenca === "falta";
+    if (!disciplina) throw new Error("Informe a disciplina.");
+    if (!dataValida(data)) throw new Error("Informe uma data válida no formato AAAA-MM-DD.");
+    if (!explicito) throw new Error("Selecione presença ou falta.");
+    if (!professorAutorizado(prof, disciplina, aluno.turma)) {
+        throw new Error("Você não está autorizado a registrar frequência nesta disciplina/turma.");
+    }
+
+    if (!Array.isArray(aluno.registrosFrequencia)) aluno.registrosFrequencia = [];
+    const agora = new Date().toISOString();
+    const chaveAula = r => String(r.aulaId || `${r.disciplina}|${r.data}`) === aulaId;
+    let registro = null;
+    if (campos.registroId) {
+        registro = aluno.registrosFrequencia.find(r => String(r.id) === String(campos.registroId));
+        if (!registro) throw new Error("Registro de frequência não encontrado para correção.");
+        const conflito = aluno.registrosFrequencia.find(r =>
+            String(r.id) !== String(registro.id) && r.disciplina === disciplina && r.data === data && chaveAula(r));
+        if (conflito) throw new Error("Já existe outro registro para esta aula. Exclua um deles antes de corrigir.");
+    } else {
+        registro = aluno.registrosFrequencia.find(r =>
+            r.disciplina === disciplina && r.data === data && chaveAula(r));
+    }
+    const eraNovo = !registro;
+    if (!registro) {
+        registro = {
+            id: proximoIdRegistro(aluno.registrosFrequencia),
+            disciplina,
+            data,
+            aulaId,
+            turma: aluno.turma,
+            origem: "professor",
+            criadoEm: agora
+        };
+        aluno.registrosFrequencia.push(registro);
+    }
+    registro.disciplina = disciplina;
+    registro.data = data;
+    registro.aulaId = aulaId;
+    registro.presenca = presenca;
+    registro.professorId = prof.id;
+    registro.atualizadoEm = agora;
+    registro.turma = aluno.turma || registro.turma || "Não definida";
+    aluno.dadosDemonstrativos = avaliarDadosDemonstrativos(aluno);
+
+    if (typeof IPA !== "undefined" && IPA.recalcular) {
+        IPA.recalcular(aluno.id, `Frequência (${disciplina}, aula ${aulaId}, ${data}) ${eraNovo ? "registrada" : "corrigida"}`, dados);
+    }
+    salvarDados(dados);
+    return registro;
+}
+
+function removerRegistroFrequencia(campos) {
+    const dados = carregarDados();
+    const prof = getProfessorPorId(campos.professorId);
+    if (!prof) throw new Error("Professor não encontrado.");
+    let encontrado = null;
+    (dados.alunos || []).forEach(aluno => {
+        (aluno.registrosFrequencia || []).forEach(registro => {
+            if (String(registro.id) === String(campos.registroId)) encontrado = { aluno, registro };
+        });
+    });
+    if (!encontrado) throw new Error("Registro de frequência não encontrado.");
+    const turma = encontrado.registro.turma || encontrado.aluno.turma;
+    if (!professorAutorizado(prof, encontrado.registro.disciplina, turma)) {
+        throw new Error("Você não está autorizado a remover este registro.");
+    }
+    encontrado.aluno.registrosFrequencia = encontrado.aluno.registrosFrequencia
+        .filter(r => String(r.id) !== String(encontrado.registro.id));
+    encontrado.aluno.dadosDemonstrativos = avaliarDadosDemonstrativos(encontrado.aluno);
+    if (typeof IPA !== "undefined" && IPA.recalcular) {
+        IPA.recalcular(encontrado.aluno.id,
+            `Registro de frequência (${encontrado.registro.disciplina}, ${encontrado.registro.data}) removido`, dados);
+    }
+    salvarDados(dados);
+    return true;
+}
+
+function getAtividades() {
+    const dados = carregarDados();
+    if (!Array.isArray(dados.atividades)) {
+        dados.atividades = [];
+        salvarDados(dados);
+    }
+    return dados.atividades;
+}
+
+function getEntregas() {
+    const dados = carregarDados();
+    if (!Array.isArray(dados.entregas)) {
+        dados.entregas = [];
+        salvarDados(dados);
+    }
+    return dados.entregas;
+}
+
+function getEntregasDaAtividade(atividadeId) {
+    return getEntregas().filter(e => String(e.atividadeId) === String(atividadeId));
+}
+
+function getRegistrosFrequencia(alunoId) {
+    const aluno = getAlunoPorId(alunoId);
+    if (!aluno) return [];
+    return (aluno.registrosFrequencia || []).slice().sort((a, b) => String(b.data).localeCompare(String(a.data)));
+}
+
+function cadastrarAtividade(campos) {
+    const dados = carregarDados();
+    const prof = getProfessorPorId(campos.professorId);
+    if (!prof) throw new Error("Professor não encontrado.");
+
+    const titulo = String(campos.titulo || "").trim();
+    const disciplina = String(campos.disciplina || "").trim();
+    const turma = String(campos.turma || "").trim();
+    const dataEntrega = String(campos.dataEntrega || "");
+    if (titulo.length < 3) throw new Error("Informe um título com ao menos 3 caracteres.");
+    if (!disciplina) throw new Error("Informe a disciplina.");
+    if (!turma) throw new Error("Informe a turma.");
+    if (!dataValida(dataEntrega)) throw new Error("Informe uma data de entrega válida.");
+    if (!professorAutorizado(prof, disciplina, turma)) {
+        throw new Error("Você não está autorizado a criar atividades nesta disciplina/turma.");
+    }
+
+    if (!Array.isArray(dados.atividades)) dados.atividades = [];
+    const atividade = {
+        id: proximoIdRegistro(dados.atividades),
+        titulo,
+        descricao: String(campos.descricao || "").trim(),
+        disciplina,
+        turma,
+        dataEntrega,
+        professorId: prof.id,
+        criadoEm: new Date().toISOString()
+    };
+    dados.atividades.push(atividade);
+    salvarDados(dados);
+
+    if (typeof IPA !== "undefined" && IPA.recalcularPorTurma) {
+        IPA.recalcularPorTurma(turma, `Atividade cadastrada: ${titulo}`);
+    }
+    return atividade;
+}
+
+function atualizarAtividade(id, campos) {
+    const dados = carregarDados();
+    const atividade = (dados.atividades || []).find(a => String(a.id) === String(id));
+    if (!atividade) throw new Error("Atividade não encontrada.");
+    if (campos.professorId && String(atividade.professorId) !== String(campos.professorId)) {
+        throw new Error("Somente o professor responsável pode alterar esta atividade.");
+    }
+    const turmaAnterior = atividade.turma;
+
+    if (campos.titulo !== undefined) {
+        const titulo = String(campos.titulo).trim();
+        if (titulo.length < 3) throw new Error("Informe um título com ao menos 3 caracteres.");
+        atividade.titulo = titulo;
+    }
+    if (campos.descricao !== undefined) atividade.descricao = String(campos.descricao).trim();
+    if (campos.dataEntrega !== undefined) {
+        if (!dataValida(String(campos.dataEntrega))) throw new Error("Data de entrega inválida.");
+        atividade.dataEntrega = String(campos.dataEntrega);
+    }
+    atividade.atualizadoEm = new Date().toISOString();
+    salvarDados(dados);
+
+    if (typeof IPA !== "undefined" && IPA.recalcularPorTurma) {
+        IPA.recalcularPorTurma(turmaAnterior, `Atividade atualizada: ${atividade.titulo}`);
+        if (atividade.turma && atividade.turma !== turmaAnterior) {
+            IPA.recalcularPorTurma(atividade.turma, `Atividade atualizada: ${atividade.titulo}`);
+        }
+    }
+    return atividade;
+}
+
+function registrarEntrega(campos) {
+    const dados = carregarDados();
+    const atividade = (dados.atividades || []).find(a => String(a.id) === String(campos.atividadeId));
+    const aluno = dados.alunos.find(a => String(a.id) === String(campos.alunoId));
+    if (!atividade) throw new Error("Atividade não encontrada.");
+    if (!aluno) throw new Error("Aluno não encontrado.");
+    if (campos.professorId && String(atividade.professorId) !== String(campos.professorId)) {
+        throw new Error("Somente o professor responsável pode alterar as entregas desta atividade.");
+    }
+    if (atividade.turma && aluno.turma !== atividade.turma) {
+        throw new Error("O aluno não está vinculado à turma desta atividade.");
+    }
+
+    const status = String(campos.status || "").trim();
+    if (!["pendente", "entregue", "atrasada"].includes(status)) {
+        throw new Error("Status inválido. Use pendente, entregue ou atrasada.");
+    }
+
+    if (!Array.isArray(dados.entregas)) dados.entregas = [];
+    const agora = new Date().toISOString();
+    let entrega = dados.entregas.find(e =>
+        String(e.atividadeId) === String(atividade.id) && String(e.alunoId) === String(aluno.id)
+    );
+    const eraNova = !entrega;
+    if (!entrega) {
+        entrega = {
+            id: proximoIdRegistro(dados.entregas),
+            atividadeId: atividade.id,
+            alunoId: aluno.id,
+            atividadeTitulo: atividade.titulo,
+            disciplina: atividade.disciplina,
+            turma: atividade.turma || aluno.turma,
+            professorId: atividade.professorId,
+            criadoEm: agora
+        };
+        dados.entregas.push(entrega);
+    }
+    entrega.status = status;
+    entrega.atualizadoEm = agora;
+
+    if (typeof IPA !== "undefined" && IPA.recalcular) {
+        IPA.recalcular(aluno.id, `Entrega "${atividade.titulo}" ${eraNova ? "registrada" : "alterada"} para ${status}`, dados);
+    }
+    salvarDados(dados);
+    return entrega;
+}
+
+function removerEntrega(campos) {
+    const dados = carregarDados();
+    const entrega = (dados.entregas || []).find(e => String(e.id) === String(campos.entregaId));
+    if (!entrega) throw new Error("Entrega não encontrada.");
+    const atividade = (dados.atividades || []).find(a => String(a.id) === String(entrega.atividadeId));
+    const prof = getProfessorPorId(campos.professorId);
+    if (!atividade) throw new Error("Atividade não encontrada.");
+    if (!prof || String(atividade.professorId) !== String(prof.id)) {
+        throw new Error("Somente o professor responsável pode remover esta entrega.");
+    }
+
+    dados.entregas = dados.entregas.filter(e => String(e.id) !== String(entrega.id));
+    if (typeof IPA !== "undefined" && IPA.recalcular) {
+        IPA.recalcular(entrega.alunoId, `Entrega removida: ${atividade.titulo}`, dados);
+    }
+    salvarDados(dados);
+    return true;
+}
+
+function removerAtividade(campos) {
+    const dados = carregarDados();
+    const atividade = (dados.atividades || []).find(a => String(a.id) === String(campos.atividadeId));
+    const prof = getProfessorPorId(campos.professorId);
+    if (!atividade) throw new Error("Atividade não encontrada.");
+    if (!prof || String(atividade.professorId) !== String(prof.id)) {
+        throw new Error("Somente o professor responsável pode remover esta atividade.");
+    }
+
+    dados.atividades = dados.atividades.filter(a => String(a.id) !== String(atividade.id));
+    dados.entregas = (dados.entregas || []).filter(e => String(e.atividadeId) !== String(atividade.id));
+    salvarDados(dados);
+
+    if (typeof IPA !== "undefined" && IPA.recalcularPorTurma) {
+        IPA.recalcularPorTurma(atividade.turma, `Atividade removida: ${atividade.titulo}`);
+    }
+    return true;
 }
 
 // ---------- Turmas ----------

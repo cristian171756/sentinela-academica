@@ -178,11 +178,29 @@
             </div>
         </div>
 
+        <!-- Recuperação dos dados originais (coordenação) -->
+        <div class="chart-card card-text" id="painelRecuperacao" style="margin-top:20px;">
+            <h2><i class="fa-solid fa-rotate-left"></i> Recuperação dos Dados Originais</h2>
+            <p class="obs">
+                Os dados demonstrativos anteriores foram preservados em um backup antes da migração para o IPA dinâmico.
+                A recuperação substitui os dados atuais; o estado anterior é guardado em
+                <code>sentinela_dados_v4_antes_restauracao</code> e os indicadores são recalculados.
+            </p>
+            <div class="config-row">
+                <button class="btn btn-perigo" id="btnRestaurarOriginal" style="width:auto;">
+                    <i class="fa-solid fa-rotate-left"></i> Recuperar dados originais
+                </button>
+                <span id="msgRestauracao" class="obs" style="margin-left:12px;"></span>
+            </div>
+        </div>
+
     </main>
 
 </div>
 
 <script src="dados.js"></script>
+
+<script src="ipa.js"></script>
 <script src="preferencias.js"></script>
 <script src="app.js"></script>
 <script src="configuracoes.js"></script>
