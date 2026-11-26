@@ -12,8 +12,8 @@ const erroLogin = document.getElementById("erroLogin");
 
 const textos = {
     label: "Login",
-    placeholder: "Digite seu email ou matrícula",
-    dica: "Aluno: matrícula + senha. Professor/Coordenação: email + senha."
+    placeholder: "Digite seu e-mail ou matrícula",
+    dica: "Aluno: matrícula ou e-mail + senha. Professor/Coordenação: e-mail + senha."
 };
 
 function aplicarTextoLogin() {
@@ -67,6 +67,13 @@ formLogin.addEventListener("submit", (e) => {
             window.location.href = "professor.html";
             return;
         }
+        // Aluno por e-mail
+        const alunoEmail = (typeof getAlunoPorEmail === "function") ? getAlunoPorEmail(usuario) : null;
+        if (alunoEmail && alunoEmail.senha === senha) {
+            iniciarSessao("aluno", alunoEmail.id);
+            window.location.href = "portal-aluno.html";
+            return;
+        }
         // Coordenação
         let ok = (usuario === COORDENADOR.email && senha === COORDENADOR.senha);
         if (!ok) {
@@ -78,7 +85,7 @@ formLogin.addEventListener("submit", (e) => {
             window.location.href = "dashboard.html";
             return;
         }
-        erroLogin.textContent = "Email ou senha incorretos.";
+        erroLogin.textContent = "E-mail ou senha incorretos.";
         erroLogin.style.display = "block";
     } else {
         const aluno = getAlunoPorMatricula(usuario);

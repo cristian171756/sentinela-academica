@@ -2589,6 +2589,148 @@ const DADOS_BASE = {
             historicoMedia: [8.4, 8.6, 8.7, 8.8, 8.9, 8.9],
             historicoFrequencia: [93, 94, 94, 95, 95, 95],
             observacoes: "Ótimo desempenho acadêmico, boa presença e entregas em dia. Baixa necessidade de acompanhamento."
+        },
+        {
+            id: 69,
+            matricula: "2024069",
+            email: "brunorafael@abel.edu.br",
+            senha: "1234",
+            nome: "Bruno Rafael Costa",
+            turma: "1º Ano A",
+            serie: "1º Ano",
+            curso: "Regular",
+            media: 4.2,
+            frequencia: 62,
+            ipa: 78,
+            notas: {
+                "Arte": [5.0, 4.5, 4.0, 3.8],
+                "Biologia": [4.5, 4.0, 3.8, 3.5],
+                "Educação Física": [6.0, 5.5, 5.0, 4.8],
+                "Filosofia": [4.0, 3.8, 3.5, 3.2],
+                "Física": [4.5, 4.0, 3.5, 3.0],
+                "Geografia": [5.0, 4.5, 4.0, 3.8],
+                "História": [4.8, 4.2, 4.0, 3.5],
+                "Língua Espanhola": [4.0, 3.8, 3.5, 3.0],
+                "Língua Inglesa": [4.5, 4.0, 3.8, 3.5],
+                "Língua Portuguesa": [5.0, 4.5, 4.0, 3.8],
+                "Matemática": [4.0, 3.5, 3.2, 3.0],
+                "Metodologia do Trabalho Científico": [4.5, 4.0, 3.8, 3.5],
+                "Projeto de Vida": [5.5, 5.0, 4.5, 4.0],
+                "Química": [4.0, 3.8, 3.5, 3.0],
+                "Sociologia do Trabalho": [4.5, 4.0, 3.8, 3.5]
+            },
+            historicoIPA: [55, 60, 68, 72, 75, 78],
+            historicoMedia: [5.8, 5.2, 4.8, 4.5, 4.3, 4.2],
+            historicoFrequencia: [78, 74, 70, 67, 64, 62],
+            observacoes: "Desempenho baixo, faltas frequentes e muitas atividades não entregues. Alta necessidade de acompanhamento."
+        },
+        {
+            id: 70,
+            matricula: "2024070",
+            email: "talitamoura@abel.edu.br",
+            senha: "1234",
+            nome: "Talita Moura Santos",
+            turma: "2º Ano B",
+            serie: "2º Ano",
+            curso: "Regular",
+            media: 4.8,
+            frequencia: 68,
+            ipa: 72,
+            notas: {
+                "Arte": [5.5, 5.0, 4.8, 4.5],
+                "Biologia": [5.0, 4.8, 4.5, 4.2],
+                "Educação Física": [6.0, 5.8, 5.5, 5.2],
+                "Filosofia": [4.8, 4.5, 4.2, 4.0],
+                "Física": [4.5, 4.2, 4.0, 3.8],
+                "Geografia": [5.2, 5.0, 4.8, 4.5],
+                "História": [5.0, 4.8, 4.5, 4.2],
+                "Língua Espanhola": [4.8, 4.5, 4.2, 4.0],
+                "Língua Inglesa": [5.0, 4.8, 4.5, 4.2],
+                "Língua Portuguesa": [5.5, 5.0, 4.8, 4.5],
+                "Matemática": [4.5, 4.2, 4.0, 3.8],
+                "Metodologia do Trabalho Científico": [5.0, 4.8, 4.5, 4.2],
+                "Projeto de Vida": [5.8, 5.5, 5.2, 5.0],
+                "Química": [4.8, 4.5, 4.2, 4.0],
+                "Sociologia do Trabalho": [5.0, 4.8, 4.5, 4.2]
+            },
+            historicoIPA: [50, 56, 62, 66, 69, 72],
+            historicoMedia: [6.0, 5.6, 5.3, 5.1, 4.9, 4.8],
+            historicoFrequencia: [80, 77, 74, 72, 70, 68],
+            observacoes: "Notas baixas e frequência irregular. Várias atividades pendentes. Alta necessidade de acompanhamento."
+        },
+        {
+            id: 71,
+            matricula: "2024071",
+            email: "diegonascimento@abel.edu.br",
+            senha: "1234",
+            nome: "Diego Nascimento Lima",
+            turma: "Informática II",
+            serie: "3º Ano",
+            curso: "Informática",
+            media: 4.0,
+            frequencia: 60,
+            ipa: 80,
+            notas: {
+                "Arte": [4.5, 4.2, 4.0, 3.8],
+                "Biologia": [4.0, 3.8, 3.5, 3.2],
+                "Educação Física": [5.5, 5.0, 4.8, 4.5],
+                "Filosofia": [4.2, 4.0, 3.8, 3.5],
+                "Física": [3.8, 3.5, 3.2, 3.0],
+                "Geografia": [4.5, 4.2, 4.0, 3.8],
+                "História": [4.0, 3.8, 3.5, 3.2],
+                "Língua Espanhola": [4.2, 4.0, 3.8, 3.5],
+                "Língua Inglesa": [4.5, 4.2, 4.0, 3.8],
+                "Língua Portuguesa": [4.8, 4.5, 4.2, 4.0],
+                "Matemática": [3.5, 3.2, 3.0, 2.8],
+                "Metodologia do Trabalho Científico": [4.2, 4.0, 3.8, 3.5],
+                "Projeto de Vida": [5.0, 4.8, 4.5, 4.2],
+                "Química": [3.8, 3.5, 3.2, 3.0],
+                "Sociologia do Trabalho": [4.2, 4.0, 3.8, 3.5],
+                "Banco de Dados": [3.5, 3.2, 3.0, 2.8],
+                "Empreendedorismo": [4.5, 4.2, 4.0, 3.8],
+                "Fundamentos de Redes de Computadores": [3.8, 3.5, 3.2, 3.0],
+                "Programação Estruturada e Orientada a Objetos": [3.5, 3.2, 3.0, 2.8],
+                "Programação WEB 1": [3.8, 3.5, 3.2, 3.0],
+                "Programação WEB 2": [3.5, 3.2, 3.0, 2.8]
+            },
+            historicoIPA: [58, 64, 70, 74, 77, 80],
+            historicoMedia: [5.5, 5.0, 4.6, 4.3, 4.1, 4.0],
+            historicoFrequencia: [75, 71, 68, 65, 62, 60],
+            observacoes: "Baixo desempenho acadêmico, faltas constantes e muitas atividades não realizadas. Alta necessidade de acompanhamento."
+        },
+        {
+            id: 72,
+            matricula: "2024072",
+            email: "kemillyvitoria@abel.edu.br",
+            senha: "1234",
+            nome: "Kemilly Vitória Alves",
+            turma: "3º Ano A",
+            serie: "3º Ano",
+            curso: "Regular",
+            media: 4.6,
+            frequencia: 66,
+            ipa: 74,
+            notas: {
+                "Arte": [5.5, 5.0, 4.8, 4.5],
+                "Biologia": [5.0, 4.8, 4.5, 4.2],
+                "Educação Física": [6.2, 5.8, 5.5, 5.2],
+                "Filosofia": [4.8, 4.5, 4.2, 4.0],
+                "Física": [4.5, 4.2, 4.0, 3.8],
+                "Geografia": [5.0, 4.8, 4.5, 4.2],
+                "História": [5.2, 5.0, 4.8, 4.5],
+                "Língua Espanhola": [4.8, 4.5, 4.2, 4.0],
+                "Língua Inglesa": [5.0, 4.8, 4.5, 4.2],
+                "Língua Portuguesa": [5.5, 5.2, 5.0, 4.8],
+                "Matemática": [4.2, 4.0, 3.8, 3.5],
+                "Metodologia do Trabalho Científico": [5.0, 4.8, 4.5, 4.2],
+                "Projeto de Vida": [5.8, 5.5, 5.2, 5.0],
+                "Química": [4.5, 4.2, 4.0, 3.8],
+                "Sociologia do Trabalho": [5.0, 4.8, 4.5, 4.2]
+            },
+            historicoIPA: [52, 58, 63, 68, 71, 74],
+            historicoMedia: [6.0, 5.6, 5.2, 5.0, 4.8, 4.6],
+            historicoFrequencia: [79, 76, 73, 70, 68, 66],
+            observacoes: "Queda de rendimento, faltas e atividades não realizadas. Alta necessidade de acompanhamento."
         }
     ]
 };
@@ -2657,70 +2799,40 @@ function seedAlunosObrigatorios(dados) {
     if (!Array.isArray(dados.alunos)) dados.alunos = [];
     const obrigatorios = [
         {
-            matricula: "2024067",
-            email: "cristiandavi@abel.edu.br",
-            senha: "1234",
-            nome: "Cristian Davi",
-            turma: "Informática II",
-            serie: "3º Ano",
-            curso: "Informática",
+            matricula: "2024067", email: "cristiandavi@abel.edu.br", senha: "1234", nome: "Cristian Davi",
+            turma: "Informática II", serie: "3º Ano", curso: "Informática",
             observacoes: "Excelente desempenho acadêmico, ótima frequência e participação ativa nas atividades. Baixa necessidade de acompanhamento.",
-            notas: {
-                "Arte": [8.5, 9.0, 9.0, 9.5],
-                "Biologia": [8.0, 8.5, 9.0, 9.0],
-                "Educação Física": [9.0, 9.0, 9.5, 10.0],
-                "Filosofia": [8.0, 8.5, 9.0, 9.0],
-                "Física": [8.5, 9.0, 9.0, 9.5],
-                "Geografia": [8.0, 9.0, 9.0, 9.5],
-                "História": [8.5, 8.5, 9.0, 9.0],
-                "Língua Espanhola": [8.0, 8.5, 9.0, 9.5],
-                "Língua Inglesa": [9.0, 9.0, 9.5, 10.0],
-                "Língua Portuguesa": [8.5, 9.0, 9.0, 9.5],
-                "Matemática": [9.0, 9.0, 9.5, 10.0],
-                "Metodologia do Trabalho Científico": [8.5, 9.0, 9.0, 9.5],
-                "Projeto de Vida": [9.0, 9.5, 9.5, 10.0],
-                "Química": [8.0, 8.5, 9.0, 9.0],
-                "Sociologia do Trabalho": [8.5, 9.0, 9.0, 9.5],
-                "Banco de Dados": [9.0, 9.0, 9.5, 10.0],
-                "Empreendedorismo": [8.5, 9.0, 9.0, 9.5],
-                "Fundamentos de Redes de Computadores": [8.0, 8.5, 9.0, 9.5],
-                "Programação Estruturada e Orientada a Objetos": [9.0, 9.5, 9.5, 10.0],
-                "Programação WEB 1": [9.0, 9.0, 9.5, 10.0],
-                "Programação WEB 2": [8.5, 9.0, 9.5, 10.0]
-            }
+            notas: {"Arte":[8.5,9,9,9.5],"Biologia":[8,8.5,9,9],"Educação Física":[9,9,9.5,10],"Filosofia":[8,8.5,9,9],"Física":[8.5,9,9,9.5],"Geografia":[8,9,9,9.5],"História":[8.5,8.5,9,9],"Língua Espanhola":[8,8.5,9,9.5],"Língua Inglesa":[9,9,9.5,10],"Língua Portuguesa":[8.5,9,9,9.5],"Matemática":[9,9,9.5,10],"Metodologia do Trabalho Científico":[8.5,9,9,9.5],"Projeto de Vida":[9,9.5,9.5,10],"Química":[8,8.5,9,9],"Sociologia do Trabalho":[8.5,9,9,9.5],"Banco de Dados":[9,9,9.5,10],"Empreendedorismo":[8.5,9,9,9.5],"Fundamentos de Redes de Computadores":[8,8.5,9,9.5],"Programação Estruturada e Orientada a Objetos":[9,9.5,9.5,10],"Programação WEB 1":[9,9,9.5,10],"Programação WEB 2":[8.5,9,9.5,10]}
         },
         {
-            matricula: "2024068",
-            email: "joycelorena@abel.edu.br",
-            senha: "1234",
-            nome: "Joyce Lorena",
-            turma: "Informática I",
-            serie: "2º Ano",
-            curso: "Informática",
+            matricula: "2024068", email: "joycelorena@abel.edu.br", senha: "1234", nome: "Joyce Lorena",
+            turma: "Informática I", serie: "2º Ano", curso: "Informática",
             observacoes: "Ótimo desempenho acadêmico, boa presença e entregas em dia. Baixa necessidade de acompanhamento.",
-            notas: {
-                "Arte": [8.0, 8.5, 9.0, 9.0],
-                "Biologia": [8.5, 9.0, 9.0, 9.5],
-                "Educação Física": [9.0, 9.0, 9.5, 10.0],
-                "Filosofia": [8.0, 8.5, 9.0, 9.0],
-                "Física": [8.0, 8.5, 9.0, 9.5],
-                "Geografia": [8.5, 9.0, 9.0, 9.5],
-                "História": [8.0, 8.5, 9.0, 9.0],
-                "Língua Espanhola": [8.5, 9.0, 9.0, 9.5],
-                "Língua Inglesa": [9.0, 9.0, 9.5, 10.0],
-                "Língua Portuguesa": [8.5, 9.0, 9.0, 9.5],
-                "Matemática": [8.0, 8.5, 9.0, 9.5],
-                "Metodologia do Trabalho Científico": [8.5, 9.0, 9.0, 9.5],
-                "Projeto de Vida": [9.0, 9.0, 9.5, 10.0],
-                "Química": [8.0, 8.5, 9.0, 9.0],
-                "Sociologia do Trabalho": [8.5, 9.0, 9.0, 9.5],
-                "Introdução à Informática": [8.5, 9.0, 9.0, 9.5],
-                "Introdução à Programação": [9.0, 9.0, 9.5, 10.0],
-                "Lógica de Programação e Algoritmo": [9.0, 9.5, 9.5, 10.0],
-                "Navegação, Pesquisa e Internet": [8.5, 9.0, 9.0, 9.5],
-                "Sistemas Operacionais": [8.0, 8.5, 9.0, 9.5],
-                "Técnicas de Digitação": [9.0, 9.0, 9.5, 10.0]
-            }
+            notas: {"Arte":[8,8.5,9,9],"Biologia":[8.5,9,9,9.5],"Educação Física":[9,9,9.5,10],"Filosofia":[8,8.5,9,9],"Física":[8,8.5,9,9.5],"Geografia":[8.5,9,9,9.5],"História":[8,8.5,9,9],"Língua Espanhola":[8.5,9,9,9.5],"Língua Inglesa":[9,9,9.5,10],"Língua Portuguesa":[8.5,9,9,9.5],"Matemática":[8,8.5,9,9.5],"Metodologia do Trabalho Científico":[8.5,9,9,9.5],"Projeto de Vida":[9,9,9.5,10],"Química":[8,8.5,9,9],"Sociologia do Trabalho":[8.5,9,9,9.5],"Introdução à Informática":[8.5,9,9,9.5],"Introdução à Programação":[9,9,9.5,10],"Lógica de Programação e Algoritmo":[9,9.5,9.5,10],"Navegação, Pesquisa e Internet":[8.5,9,9,9.5],"Sistemas Operacionais":[8,8.5,9,9.5],"Técnicas de Digitação":[9,9,9.5,10]}
+        },
+        {
+            matricula: "2024069", email: "brunorafael@abel.edu.br", senha: "1234", nome: "Bruno Rafael Costa",
+            turma: "1º Ano A", serie: "1º Ano", curso: "Regular",
+            observacoes: "Desempenho baixo, faltas frequentes e muitas atividades não entregues. Alta necessidade de acompanhamento.",
+            notas: {"Arte":[5,4.5,4,3.8],"Biologia":[4.5,4,3.8,3.5],"Educação Física":[6,5.5,5,4.8],"Filosofia":[4,3.8,3.5,3.2],"Física":[4.5,4,3.5,3],"Geografia":[5,4.5,4,3.8],"História":[4.8,4.2,4,3.5],"Língua Espanhola":[4,3.8,3.5,3],"Língua Inglesa":[4.5,4,3.8,3.5],"Língua Portuguesa":[5,4.5,4,3.8],"Matemática":[4,3.5,3.2,3],"Metodologia do Trabalho Científico":[4.5,4,3.8,3.5],"Projeto de Vida":[5.5,5,4.5,4],"Química":[4,3.8,3.5,3],"Sociologia do Trabalho":[4.5,4,3.8,3.5]}
+        },
+        {
+            matricula: "2024070", email: "talitamoura@abel.edu.br", senha: "1234", nome: "Talita Moura Santos",
+            turma: "2º Ano B", serie: "2º Ano", curso: "Regular",
+            observacoes: "Notas baixas e frequência irregular. Várias atividades pendentes. Alta necessidade de acompanhamento.",
+            notas: {"Arte":[5.5,5,4.8,4.5],"Biologia":[5,4.8,4.5,4.2],"Educação Física":[6,5.8,5.5,5.2],"Filosofia":[4.8,4.5,4.2,4],"Física":[4.5,4.2,4,3.8],"Geografia":[5.2,5,4.8,4.5],"História":[5,4.8,4.5,4.2],"Língua Espanhola":[4.8,4.5,4.2,4],"Língua Inglesa":[5,4.8,4.5,4.2],"Língua Portuguesa":[5.5,5,4.8,4.5],"Matemática":[4.5,4.2,4,3.8],"Metodologia do Trabalho Científico":[5,4.8,4.5,4.2],"Projeto de Vida":[5.8,5.5,5.2,5],"Química":[4.8,4.5,4.2,4],"Sociologia do Trabalho":[5,4.8,4.5,4.2]}
+        },
+        {
+            matricula: "2024071", email: "diegonascimento@abel.edu.br", senha: "1234", nome: "Diego Nascimento Lima",
+            turma: "Informática II", serie: "3º Ano", curso: "Informática",
+            observacoes: "Baixo desempenho acadêmico, faltas constantes e muitas atividades não realizadas. Alta necessidade de acompanhamento.",
+            notas: {"Arte":[4.5,4.2,4,3.8],"Biologia":[4,3.8,3.5,3.2],"Educação Física":[5.5,5,4.8,4.5],"Filosofia":[4.2,4,3.8,3.5],"Física":[3.8,3.5,3.2,3],"Geografia":[4.5,4.2,4,3.8],"História":[4,3.8,3.5,3.2],"Língua Espanhola":[4.2,4,3.8,3.5],"Língua Inglesa":[4.5,4.2,4,3.8],"Língua Portuguesa":[4.8,4.5,4.2,4],"Matemática":[3.5,3.2,3,2.8],"Metodologia do Trabalho Científico":[4.2,4,3.8,3.5],"Projeto de Vida":[5,4.8,4.5,4.2],"Química":[3.8,3.5,3.2,3],"Sociologia do Trabalho":[4.2,4,3.8,3.5],"Banco de Dados":[3.5,3.2,3,2.8],"Empreendedorismo":[4.5,4.2,4,3.8],"Fundamentos de Redes de Computadores":[3.8,3.5,3.2,3],"Programação Estruturada e Orientada a Objetos":[3.5,3.2,3,2.8],"Programação WEB 1":[3.8,3.5,3.2,3],"Programação WEB 2":[3.5,3.2,3,2.8]}
+        },
+        {
+            matricula: "2024072", email: "kemillyvitoria@abel.edu.br", senha: "1234", nome: "Kemilly Vitória Alves",
+            turma: "3º Ano A", serie: "3º Ano", curso: "Regular",
+            observacoes: "Queda de rendimento, faltas e atividades não realizadas. Alta necessidade de acompanhamento.",
+            notas: {"Arte":[5.5,5,4.8,4.5],"Biologia":[5,4.8,4.5,4.2],"Educação Física":[6.2,5.8,5.5,5.2],"Filosofia":[4.8,4.5,4.2,4],"Física":[4.5,4.2,4,3.8],"Geografia":[5,4.8,4.5,4.2],"História":[5.2,5,4.8,4.5],"Língua Espanhola":[4.8,4.5,4.2,4],"Língua Inglesa":[5,4.8,4.5,4.2],"Língua Portuguesa":[5.5,5.2,5,4.8],"Matemática":[4.2,4,3.8,3.5],"Metodologia do Trabalho Científico":[5,4.8,4.5,4.2],"Projeto de Vida":[5.8,5.5,5.2,5],"Química":[4.5,4.2,4,3.8],"Sociologia do Trabalho":[5,4.8,4.5,4.2]}
         }
     ];
 
@@ -2806,6 +2918,10 @@ function seedDadosSimulacao(dados) {
         const email = String(aluno.email || "").toLowerCase();
         return email === "cristiandavi@abel.edu.br" || email === "joycelorena@abel.edu.br";
     }
+    function isAlunoRisco(aluno) {
+        const email = String(aluno.email || "").toLowerCase();
+        return ["brunorafael@abel.edu.br","talitamoura@abel.edu.br","diegonascimento@abel.edu.br","kemillyvitoria@abel.edu.br"].includes(email);
+    }
 
     // Garante atividades por turma/disciplina
     const turmas = [...new Set(dados.alunos.map(a => a.turma).filter(Boolean))];
@@ -2841,6 +2957,7 @@ function seedDadosSimulacao(dados) {
         if (!Array.isArray(aluno.historicoIPACalculado)) aluno.historicoIPACalculado = [];
 
         const destaque = isAlunoDestaque(aluno);
+        const risco = isAlunoRisco(aluno);
         const disciplinas = disciplinasDoAluno(aluno).slice(0, destaque ? 8 : 6);
         const base = hashSeed(String(aluno.id) + "|" + aluno.nome);
 
@@ -2851,7 +2968,8 @@ function seedDadosSimulacao(dados) {
                 const existe = aluno.registrosFrequencia.some(r => r.disciplina === disciplina && r.data === data && String(r.aulaId) === String(aulaId));
                 if (existe) return;
                 const roll = (base + di * 17 + i * 31) % 100;
-                const presenca = destaque ? roll < 96 : roll < 84;
+                const limitePresenca = destaque ? 96 : (risco ? 58 : 84);
+                const presenca = roll < limitePresenca;
                 aluno.registrosFrequencia.push({
                     id: proximoIdRegistro(aluno.registrosFrequencia),
                     disciplina,
@@ -2874,6 +2992,7 @@ function seedDadosSimulacao(dados) {
             const roll = (base + idx * 13) % 100;
             let status;
             if (destaque) status = roll < 92 ? "entregue" : (roll < 97 ? "atrasada" : "pendente");
+            else if (risco) status = roll < 35 ? "entregue" : (roll < 50 ? "atrasada" : "pendente");
             else status = roll < 62 ? "entregue" : (roll < 78 ? "atrasada" : "pendente");
             dados.entregas.push({
                 id: proximoIdRegistro(dados.entregas),
@@ -3034,7 +3153,12 @@ function getAlunoPorId(id) {
 }
 
 function getAlunoPorMatricula(matricula) {
-    return getAlunos().find(a => a.matricula === matricula);
+    return getAlunos().find(a => String(a.matricula) === String(matricula).trim());
+}
+
+function getAlunoPorEmail(email) {
+    const alvo = String(email || "").toLowerCase().trim();
+    return getAlunos().find(a => String(a.email || "").toLowerCase().trim() === alvo);
 }
 
 

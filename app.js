@@ -22,6 +22,7 @@ const App = {
         { key: "frequencia", href: "professor.html#frequencia", icon: "fa-calendar-check", label: "Frequência" },
         { key: "atividades", href: "professor.html#atividades", icon: "fa-list-check", label: "Atividades" },
         { key: "avisos", href: "avisos.html", icon: "fa-bullhorn", label: "Avisos" },
+        { key: "chat", href: "chat.html", icon: "fa-comments", label: "Chat das Turmas" },
         { key: "configuracoes", href: "configuracoes.html", icon: "fa-gear", label: "Configurações" }
     ],
 

@@ -23,25 +23,34 @@
         <header class="top-bar">
             <div>
                 <h1 id="tituloChat">Chat da Turma</h1>
-                <p id="subtituloChat">Converse com colegas e coordenação.</p>
+                <p id="subtituloChat">Converse com colegas, professores e coordenação.</p>
             </div>
             <div class="avatar-coord"><i class="fa-solid fa-comments"></i></div>
         </header>
 
         <div class="chat-shell">
 
-            <div class="chat-sidebar" id="chatSidebar" style="display:none;">
-                <h3>Turmas</h3>
-                <div id="listaTurmasChat"></div>
-            </div>
+            <aside class="chat-sidebar" id="chatSidebar" style="display:none;">
+                <div class="chat-sidebar-head">
+                    <h3><i class="fa-solid fa-layer-group"></i> Turmas</h3>
+                    <p>Selecione uma sala</p>
+                </div>
+                <div id="listaTurmasChat" class="chat-room-list"></div>
+            </aside>
 
-            <div class="chat-main">
+            <section class="chat-main">
+                <div class="chat-main-head">
+                    <div>
+                        <strong>Sala da turma</strong>
+                        <span>Fotos, mensagens e presença em tempo real</span>
+                    </div>
+                </div>
                 <div class="chat-messages" id="chatMessages"></div>
                 <div class="chat-input-row">
-                    <input type="text" id="chatInput" placeholder="Digite uma mensagem...">
-                    <button id="chatEnviar"><i class="fa-solid fa-paper-plane"></i> Enviar</button>
+                    <input type="text" id="chatInput" placeholder="Digite uma mensagem..." maxlength="500" autocomplete="off">
+                    <button id="chatEnviar" type="button"><i class="fa-solid fa-paper-plane"></i> Enviar</button>
                 </div>
-            </div>
+            </section>
 
         </div>
 
